@@ -1,9 +1,10 @@
 STORY
 You are a hero on a quest. For what? You don't quite remember. Get started to see if you can figure it out. 
 
+
 QUEST
-To arrive at a castle for a birthday party all the hero's friends are throwing him. Racoon, Anomalocaris, and Cat. 
-Happy Birthday message and raining confetti happen at this point. 
+To arrive at a castle for a birthday party all the hero's friends are throwing him. Raccoon, Anomalocaris, and Cat. 
+
 
 STATS - Randomize and display
 --> Swimming 
@@ -15,17 +16,74 @@ STATS - Randomize and display
 --> Points
     Start at 5
 
+
 LOCATIONS
 - PATH
+    --> You start before a split path
+        --> If you go left, you go to the RIVER
+        --> If you go right, you got to the FLOWER FIELD
 - RIVER
     --> Swim across
-        --> If swimming is above 7, you make it across 
-        --> If swimming is below 7, you are swept away, and a point is subtracted
-        --> If swimming is below 4, you drown, and get game over
+            --> If swimming is 7-10, you make it across 
+            --> If swimming is 4-6, you are swept away, but wash up on the opposite bank, and 1 point is subtracted
+            --> If swimming is 1-3, you drown, and get GAME OVER
     --> Look for a bridge
-    --> Wait for a boat to pass by and take you across 
-        --> No boat comes and you get hungry and go home
-- CASTLE
+            --> You find the bridge, cross successfully, and continue on the PATH
+    --> Wait for a boat to pass by and take you across (50/50)
+            --> No boat comes, you get hungry, go home, and get a GAME OVER as you never finished the quest
+            --> A boat comes, but it takes awhile, and 2 points are subtracted
+- FLOWER FIELD
+    --> Walk past
+            --> You contine on the PATH in too much of a hurry, and lose 2 points
+    --> Stop and admire flowers 
+            --> You gain 1 point for enjoying the little things
+    --> Pick flowers
+            --> A bee flies out a flower, stings you, and get GAME OVER (33% likely)
+            --> You gain a bouquet of flowers, gain 2 points, and continue on the PATH (INVENTORY ADD) (66% likely)
+- CASTLE (arrive after either RIVER or FLOWER FIELD)
+    --> Try to open the door 
+            --> If intelligence is 6-10, the door opens, and get INSIDE CASTLE
+            --> If intelligence is 1-5, you receive a message to search for a key or another way in, lose 1 point
+                --> Takes you to LOOK AROUND 
+    --> Look around
+            --> You come to a WINDOW with a box beneath it 
+                --> If jumping is 7-10, you climb on the box, make it to the window, and get INSIDE CASTLE
+                --> If jumping is 4-6, you have to jump again, lose 2 points, the get INSIDE CASTLE
+                --> if jumping is 1-3, you fall, hit your head, and get a GAME OVER
+            --> You get distracted by a tree
+                --> If intelligence is 5-10, you think to check the hollow, and find a key (INVENTORY ADD)
+                    --> You return to the DOOR and open it (KEY DISAPPEARS AS IS USED), get INSIDE CASTLE
+                --> If intelligence is 1-4, a squirrel runs by and startles you, you lose 1 point, you continue looking around
+                    --> find the WINDOW
+- INSIDE CASTLE
+    --> Go upstairs
+        --> Feel eerie at the empty rooms, feel like you hear creepy whispering, decide to go home scared, get a GAME OVER
+    --> Go downstairs
+        --> Find your friends who jump out and surprise you
+        --> If you have a flower bouquet in INVENTORY, they put it in a vase in the middle of the table 
+        --> get the HAPPY BIRTHDAY ending
+            --> Happy Birthday message and raining confetti happen
+    --> Go to the kitchen
+        --> Find a mess (powdered sugar, candles, spilled juice) that implies the castle is not empty, keep searching
+            --> Go UPSTAIRS
+            --> GO DOWNSTAIRS
+- SECRET ENDING
+    --> If points are above =<4, you get a bonus SECRET ENDING(tbd), after the HAPPY BIRTHDAY ending
+        --> 1 redeemable date with me coupon
+
+
+MECHANICS
+- GAME START
+    --> Roll stats
+    --> Clear INVENTORY
+    --> Reset POINTS to 5
+- Game is one way forward, cannot replay scenes or choices without restarting
+- All stats are generated w/Math.random at the beginning
+- GAME OVER
+    --> Option to PLAY AGAIN
+
+
+
 
 
 
