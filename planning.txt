@@ -1,0 +1,32 @@
+STORY
+You are a hero on a quest. For what? You don't quite remember. Get started to see if you can figure it out. 
+
+QUEST
+To arrive at a castle for a birthday party all the hero's friends are throwing him. Racoon, Anomalocaris, and Cat. 
+Happy Birthday message and raining confetti happen at this point. 
+
+STATS - Randomize and display
+--> Swimming 
+    1 - 10
+--> Jumping
+    1 - 10
+--> Intelligence
+    1 - 10
+--> Points
+    Start at 5
+
+LOCATIONS
+- PATH
+- RIVER
+    --> Swim across
+        --> If swimming is above 7, you make it across 
+        --> If swimming is below 7, you are swept away, and a point is subtracted
+        --> If swimming is below 4, you drown, and get game over
+    --> Look for a bridge
+    --> Wait for a boat to pass by and take you across 
+        --> No boat comes and you get hungry and go home
+- CASTLE
+
+
+
+
