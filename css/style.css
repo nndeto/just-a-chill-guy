@@ -1,6 +1,31 @@
+
 body {
-    background-image: url(../images/backgroundone.jpg);
+    background-image: url("../images/backgroundone.jpg");
+    background-size: cover;
+    background-position: center center;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    background-size: cover;
+    min-height: 100vh;
+    margin: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.left-side-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    width: 33.33%;
+    max-width: 420px;
+    min-height: 60vh;
+    padding: 24px;
+    margin-left: 3%;
+
+    box-sizing: border-box;
+    background: rgba(255, 255, 255, 0.65);
 }

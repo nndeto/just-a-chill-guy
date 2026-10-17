@@ -1,10 +1,8 @@
 STORY
 You are a hero on a quest. For what? You don't quite remember. Get started to see if you can figure it out. 
 
-
 QUEST
 To arrive at a castle for a birthday party all the hero's friends are throwing him. Raccoon, Anomalocaris, and Cat. 
-
 
 STATS - Randomize and display
 --> Swimming 
@@ -68,7 +66,7 @@ LOCATIONS
             --> Go UPSTAIRS
             --> GO DOWNSTAIRS
 - SECRET ENDING
-    --> If points are above =<4, you get a bonus SECRET ENDING(tbd), after the HAPPY BIRTHDAY ending
+    --> If points are above =>4, you get a bonus SECRET ENDING(tbd), after the HAPPY BIRTHDAY ending
         --> 1 redeemable date with me coupon
 
 
@@ -83,6 +81,16 @@ MECHANICS
     --> Option to PLAY AGAIN
 
 
+
+Player Object
+stats: intelligence, jumping, swimming;
+points;
+name: julio;
+inventory:;
+location: path;
+gameStatus: notStarted/playing/gameOver;
+
+gamePlay Object
 
 
 
