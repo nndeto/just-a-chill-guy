@@ -130,6 +130,20 @@ function swimStatCheck() {
     return "riverDrown";     
 }
 
+function intelligenceDoorCheck() {
+    if (intelligenceStat >= 6) {
+        return "insideCastle"; }
+    return "lookAroundCastle";     
+}
+
+function jumpingStatCheck() {
+    if (jumpingStat >= 7) {
+        return "castleJumpSuccess"; }
+    if (jumpingStat >= 4) {
+        return "castleJumpAgain"; }
+    return "castleJumpFailure";     
+}
+
 function gameOver(){
     alert("Game Over!");
     gamePlayArea.style.display = "none"; // Hide the game play area
