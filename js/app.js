@@ -2,7 +2,7 @@
 let startButton = document.getElementById("start-button");
 let introText = document.getElementById("intro-text");
 let gamePlayArea = document.getElementById("game-play");
-let intelligenceStat = 5;
+let luckStat = 5;
 let jumpingStat = 6;
 let swimStat = 3;
 let inventory = [];
@@ -95,6 +95,72 @@ let story = {
             { text: "Hurry up!", next: "castle" }
         ],
     },   
+    castle: {
+        text: "You arrive at the castle, gazing up at its stone walls covered in ivy. You notice a door and a window. Which do you approach?",
+        choices: [
+            { text: "Try the door", action: () => luckDoorCheck() },
+            { text: "Check out the window", next: "castleWindow" }
+        ]
+    },
+    castleInside: {
+        text: "You successfully enter the castle. Inside, you find a grand hall with a staircase leading up, a hallway leading to other rooms, and a slightly ajar door. Where do you go?",
+        choices: [ 
+            { text: "Go up the staircase", next: "castleStairs" },
+            { text: "Take the hallway", next: "castleKitchen" },
+            { text: "Investigate the ajar door", next: "castleAjarDoor" }
+        ]
+    },
+    castleLookAround: {
+        text: "You try the door, but it is locked. Grumbling, you look around and notice a window, but you also see a tree nearby that could be a good hiding spot for a key. What do you do?",
+        choices: [
+            { text: "Head for the tree", next: "castleTree"},
+            { text: "Head for the window", next: "castleWindow" }
+        ]
+    },
+    castleTree: {
+        text: "You approach the tree and and walk around it, wondering where a key could be hidden. You notice a small hole in the trunk.",
+        choices: [
+            { text: "Reach inside the hole", action: () => luckKeyCheck() }
+        ]
+    },
+    castleKeyFound: {
+        text: "You reach inside the hole and feel around. Your hand brushes against something cold and metallic. You pull out a small key, covered in dirt but still intact. You take it and head back to the door.",
+        choices: [
+            { text: "Use the key to open the door", next: "castleInside" }
+        ]
+    },
+    castleUnluckyTree: {
+        text: "You reach inside the hole but come up empty-handed. Shaking your head, you laught at how silly you are for thinking there would be a key there. Perhaps you should try a different approach.",
+        choices: [
+            { text: "Head for the window", next: "castleWindow" }
+        ]
+    },
+    castleWindow: {
+        text: "You approach the window and notice that it is slightly open. You can see a ledge outside, but it looks like a drop to the ground below which has rocks scattered around. What do you do?",
+        choices: [
+            { text: "Jump towards the ledge", action: () => jumpingStatCheck() },
+            { text: "But, seriously, you have to jump.", action: () => jumpingStatCheck() }
+        ]
+    },
+    castleWindowJumpSuccess: {
+        text: "You take a deep breath and jump towards the ledge. You manage to grab onto it!",
+        choices: [
+            { text: "Pull yourself up", next: "castleInside"}
+        ]
+    },
+    castleWindowJumpAgain: {
+        text: "Biting your lip, you take a breath, and jump towards the ledge. You miss by a hair's breadth. Motivated, you shake it out and prepare to jump again. Grabbing the ledge this time, you smile in triumph.",
+        choices: [
+            { text: "Twice? Aren't you athletic. Now, pull yourself up. ", next: "castleInside"}
+        ]
+    },
+    castleWindowJumpFailure: {
+        text: "You jump and miss egregiously. Your stomach drops as you fall back towards the ground. You wonder at how silly your choice was before hitting your head on a rock.",
+        choices: [
+            {text: "You have met an untimely end.", action: gameOver}
+        ]
+    
+    }
 };
 
 //FUNCTIONS//
@@ -130,18 +196,24 @@ function swimStatCheck() {
     return "riverDrown";     
 }
 
-function intelligenceDoorCheck() {
-    if (intelligenceStat >= 6) {
-        return "insideCastle"; }
-    return "lookAroundCastle";     
+function luckDoorCheck() {
+    if (luckStat >= 6) {
+        return "castleInside"; }
+    return "castleLookAround";     
+}
+
+function luckKeyCheck() {
+    if (luckStat >= 5) {
+        return "castleKeyFound"; }
+    return "castleUnluckyTree";     
 }
 
 function jumpingStatCheck() {
     if (jumpingStat >= 7) {
-        return "castleJumpSuccess"; }
+        return "castleWindowJumpSuccess"; }
     if (jumpingStat >= 4) {
-        return "castleJumpAgain"; }
-    return "castleJumpFailure";     
+        return "castleWindowJumpAgain"; }
+    return "castleWindowJumpFailure";     
 }
 
 function gameOver(){

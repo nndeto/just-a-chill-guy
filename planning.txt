@@ -9,7 +9,7 @@ STATS - Randomize and display
     1 - 10
 --> Jumping
     1 - 10
---> Intelligence
+--> luck
     1 - 10
 --> Points
     Start at 5
@@ -40,8 +40,8 @@ LOCATIONS
             --> You gain a bouquet of flowers, gain 2 points, and continue on the PATH (INVENTORY ADD) (66% likely)
 - CASTLE (arrive after either RIVER or FLOWER FIELD)
     --> Try to open the door 
-            --> If intelligence is 6-10, the door opens, and get INSIDE CASTLE
-            --> If intelligence is 1-5, you receive a message to search for a key or another way in, lose 1 point
+            --> If luck is 6-10, the door opens, and get INSIDE CASTLE
+            --> If luck is 1-5, you receive a message to search for a key or another way in, lose 1 point
                 --> Takes you to LOOK AROUND 
     --> Look around
             --> You come to a WINDOW with a box beneath it 
@@ -49,9 +49,9 @@ LOCATIONS
                 --> If jumping is 4-6, you have to jump again, lose 2 points, the get INSIDE CASTLE
                 --> if jumping is 1-3, you fall, hit your head, and get a GAME OVER
             --> You get distracted by a tree
-                --> If intelligence is 5-10, you think to check the hollow, and find a key (INVENTORY ADD)
+                --> If luck is 5-10, you think to check the hollow, and find a key (INVENTORY ADD)
                     --> You return to the DOOR and open it (KEY DISAPPEARS AS IS USED), get INSIDE CASTLE
-                --> If intelligence is 1-4, a squirrel runs by and startles you, you lose 1 point, you continue looking around
+                --> If luck is 1-4, a squirrel runs by and startles you, you lose 1 point, you continue looking around
                     --> find the WINDOW
 - INSIDE CASTLE
     --> Go upstairs
@@ -83,7 +83,7 @@ MECHANICS
 
 
 Player Object
-stats: intelligence, jumping, swimming;
+stats: luck, jumping, swimming;
 points;
 name: julio;
 inventory:;
