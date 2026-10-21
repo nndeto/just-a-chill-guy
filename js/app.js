@@ -6,6 +6,7 @@ let intelligenceStat = 5;
 let jumpingStat = 6;
 let swimStat = 3;
 let inventory = [];
+let points = 0;
 
 
 
@@ -67,7 +68,7 @@ let story = {
         choices: [
             { text: "Continue journey", next: "path" },
             { text: "Stop and admire flowers", next: "flowerAdmire" },
-            { text: "Pick some flowers", action: () => fiftyFifty("flowerPickSuccess", "flowerPickFailure")  }
+            { text: "Pick some flowers", action: () => twoThirdChance("flowerPickSuccess", "flowerPickFailure")  }
         ]
     },
     flowerAdmire: {
@@ -106,7 +107,11 @@ function startQuest() {
     gamePlayArea.style.display = "block"; // Show the game play area
 }
 
- function fiftyFifty(optionA, optionB) {
+function twoThirdChance(optionA, optionB) {
+    return Math.random() < 0.66 ? optionA : optionB;
+}
+
+ function fiftyFiftyChance(optionA, optionB) {
     return Math.random() < 0.5 ? optionA : optionB;
 }
 
@@ -145,7 +150,7 @@ function showScene(sceneKey) {
     // Create a button for each choice
     scene.choices.forEach(function(choice) {
         choice.inventory ? choice.inventory() : null; //call inventory if choice has one
-        
+
         let btn = document.createElement("button");
         btn.innerText = choice.text;
 
