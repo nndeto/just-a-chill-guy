@@ -22,7 +22,7 @@ let story = {
         choices: [
             { text: "Swim across", action: swimStatCheck},
             { text: "Look for a bridge", next: "riverBridge" },
-            { text: "Wait for a boat", next: fiftyFifty("riverBoatSuccess", "riverBoatFailure")},
+            { text: "Wait for a boat", action: () => fiftyFifty("riverBoatSuccess", "riverBoatFailure")},
         ],
     },
     riverSwimCross: {
@@ -34,45 +34,63 @@ let story = {
     riverSweptAway: {
         text: "You attempt to swim across the river, but the current is stronger than you anticipated. You are swept downstream but eventually wash up on the opposite bank.",
         choices: [
-            { text: "Collapsing on the bank you take awhile to get started again", next: "path" }
+            { text: "Collapsing on the bank, you rest before starting again", next: "path" }
         ]
     },
     riverDrown: {
         text: "You attempt to swim across the river, but the current is too strong. You are swept away. You struggle to keep your head above water, but eventually you succumb to the river's pull and drown.",
         choices: [
-            { text: "You have met an untimely end.", action: gameOver }
+            { text: "You have met an untimely end", action: gameOver }
         ]
     },
     riverBridge: {
         text: "You decide to look for a bridge. After a short walk, you find a sturdy wooden bridge that allows you to cross the river safely.",
         choices: [
-            { text: "Once across, you eye the path ahead", next: "path" }
+            { text: "Continue journey", next: "path" }
         ]
     },
     riverBoatSuccess: {
-        text: "You decide to wait for a boat. After a while, a small boat appears and ferries you across the river safely.",
+        text: "You decide to wait for a boat. After a while, a small boat appears and ferries you across the river safely. You eye the path ahead, anxious to continue.",
         choices: [
-            { text: "Waving bye to the ferryman, you continue onward", next: "path" }
+            { text: "Wave bye to the ferryman!", next: "path" }
         ]
     },
     riverBoatFailure: {
-        text: "You decide to wait for a boat. After a long, long, long wait, no boat comes. Your stomach growls, and you realize you have no food or water. You decide to go home.  Better luck next time.",
+        text: "You decide to wait for a boat. After a long, long, long wait, no boat comes. Your stomach growls, and you realize you have no food or water. You decide to go home.",
         choices: [
-            { text: "You decide to go home.", action: gameOver }
+            { text: "Going home? What a quitter.", action: gameOver }
         ]
     },
     flowerField: {
-        text: "You find yourself in a beautiful field of flowers. A path leads to a small cottage.",   
+        text: "You follow the right path and find yourself in a beautiful field of flowers. What do you do?",   
         choices: [
-            { text: "Follow the path", next: "path" },
-            { text: "Pick some flowers", next: "start" }
+            { text: "Continue journey", next: "path" },
+            { text: "Stop and admire flowers", next: "flowerAdmire" },
+            { text: "Pick some flowers", action: () => fiftyFifty("flowerPickSuccess", "flowerPickFailure")  }
+        ]
+    },
+    flowerAdmire: {
+        text: "You stop to admire the flowers. The colors are mesmerizing, the scents are intoxicating and you feel a deep connection to nature.",
+        choices: [
+            { text: "Continue journey", next: "path" }
+        ]
+    },
+    flowerPickSuccess: {
+        text: "You pick some flowers and they smell wonderful. You add them to your bag and continue your journey.",
+        choices: [
+            { text: "Continue journey", next: "path" }
+        ]
+    },
+    flowerPickFailure: {
+        text: "You try to pick some flowers, but a bee flies out and stings you. You feel a sharp pain and your throat swells up. You realize you are allergic to bee stings and you collapse.",
+        choices: [
+            { text: "You have met an untimely end", action: gameOver}
         ]
     },
     path: {
-        text: "You follow the path and arrive at a small cottage. The door is slightly ajar.",
+        text: "You walk the path for what feels like hours. ",
         choices: [
-            { text: "Enter the cottage", next: "cottage" },
-            { text: "Knock on the door", next: "start" }
+            { text: "Hurry up!", next: "castle" }
         ],
     },   
 };
@@ -87,8 +105,8 @@ function startQuest() {
     gamePlayArea.style.display = "block"; // Show the game play area
 }
 
-function fiftyFifty(nextA, nextB) { //generic function to return one of two options based on a 50/50 chance
-    return Math.random() < 0.5 ? nextA : nextB;
+ function fiftyFifty(optionA, optionB) {
+    return Math.random() < 0.5 ? optionA : optionB;
 }
 
 function swimStatCheck() {
@@ -120,7 +138,7 @@ function showScene(sceneKey) {
     scene.choices.forEach(function(choice) {
         let btn = document.createElement("button");
         btn.innerText = choice.text;
-        
+
         btn.onclick = function() {
             if (choice.action) {
                 showScene(choice.action());
