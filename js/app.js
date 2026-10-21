@@ -2,11 +2,11 @@
 let startButton = document.getElementById("start-button");
 let introText = document.getElementById("intro-text");
 let gamePlayArea = document.getElementById("game-play");
-let luckStat = 5;
-let jumpingStat = 6;
-let swimStat = 3;
+let luckStat;
+let jumpStat;
+let swimStat;
 let inventory = [];
-let points = 0;
+let points = 5;
 
 
 
@@ -24,7 +24,7 @@ let story = {
         choices: [
             { text: "Swim across", action: swimStatCheck},
             { text: "Look for a bridge", next: "riverBridge" },
-            { text: "Wait for a boat", action: () => fiftyFifty("riverBoatSuccess", "riverBoatFailure")},
+            { text: "Wait for a boat", action: () => fiftyFiftyChance("riverBoatSuccess", "riverBoatFailure")},
         ],
     },
     riverSwimCross: {
@@ -169,8 +169,21 @@ function startQuest() {
     startButton.disabled = true; // Disable the start button after starting
     startButton.textContent = "Questing..."
     introText.style.display = "none"; // Hide the intro text
-    showScene("start")
+    luckStat = randomizeStat();
+    jumpStat = randomizeStat();
+    swimStat = randomizeStat();
+    inventory = [];
+    points = 5;
+    showScene("start");
     gamePlayArea.style.display = "block"; // Show the game play area
+}
+
+function randomizeStat () {
+    return Math.floor(Math.random() * 10) + 1
+}
+
+function pointStatMath(value) { //TBC
+    return `Points: ${points + value}`
 }
 
 function twoThirdChance(optionA, optionB) {
@@ -209,9 +222,9 @@ function luckKeyCheck() {
 }
 
 function jumpingStatCheck() {
-    if (jumpingStat >= 7) {
+    if (jumpStat >= 7) {
         return "castleWindowJumpSuccess"; }
-    if (jumpingStat >= 4) {
+    if (jumpStat >= 4) {
         return "castleWindowJumpAgain"; }
     return "castleWindowJumpFailure";     
 }
@@ -235,14 +248,19 @@ function showScene(sceneKey) {
 
     // Create a button for each choice
     scene.choices.forEach(function(choice) {
-        choice.inventory ? choice.inventory() : null; //call inventory if choice has one
 
         let btn = document.createElement("button");
         btn.innerText = choice.text;
 
         btn.onclick = function() {
+            if (choice.inventory) {
+                choice.inventory(); //call inventory if choice has one
+            }
             if (choice.action) {
-                showScene(choice.action());
+                let nextScene = choice.action();
+                if (nextScene) {
+                    showScene(nextScene);
+                }
             } else {
                 showScene(choice.next);
             }
