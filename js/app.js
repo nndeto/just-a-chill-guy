@@ -5,6 +5,7 @@ let gamePlayArea = document.getElementById("game-play");
 let intelligenceStat = 5;
 let jumpingStat = 6;
 let swimStat = 3;
+let inventory = [];
 
 
 
@@ -78,7 +79,7 @@ let story = {
     flowerPickSuccess: {
         text: "You pick some flowers and they smell wonderful. You add them to your bag and continue your journey.",
         choices: [
-            { text: "Continue journey", next: "path" }
+            { text: "Continue journey", next: "path", inventory: () => inventoryAdd("flowers")}
         ]
     },
     flowerPickFailure: {
@@ -88,7 +89,7 @@ let story = {
         ]
     },
     path: {
-        text: "You walk the path for what feels like hours. ",
+        text: "You walk the path for what feels like hours. You decide to talk to yourself to keep your spirits up, still unsure what you're searching for. Squinting, you see a castle in the distance.",
         choices: [
             { text: "Hurry up!", next: "castle" }
         ],
@@ -107,6 +108,13 @@ function startQuest() {
 
  function fiftyFifty(optionA, optionB) {
     return Math.random() < 0.5 ? optionA : optionB;
+}
+
+function inventoryAdd(item) {
+    // Add the item to the inventory (this is a placeholder, implement as needed)
+    console.log(`Added ${item} to inventory.`);
+    inventory.push(item);
+    return 
 }
 
 function swimStatCheck() {
@@ -136,6 +144,8 @@ function showScene(sceneKey) {
 
     // Create a button for each choice
     scene.choices.forEach(function(choice) {
+        choice.inventory ? choice.inventory() : null; //call inventory if choice has one
+        
         let btn = document.createElement("button");
         btn.innerText = choice.text;
 
@@ -145,7 +155,7 @@ function showScene(sceneKey) {
             } else {
                 showScene(choice.next);
             }
-            };
+        };
         buttonArea.appendChild(btn);
     });
 }
