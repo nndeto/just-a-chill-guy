@@ -1,0 +1,34 @@
+Phase 1 — Finish the game logic
+[ ] Implement points stat updates — Finish pointStatMath() and connect it to the choices that should award or deduct points. Update the displayed Points value after each change.
+[ ] Define the points rules — Confirm the intended rewards and penalties: the river setback, flower-field choices, and successful bouquet pickup. Make sure each effect happens once, at the intended choice—not every time a scene renders.
+[ ] Decide how zero points behaves — Choose whether zero points triggers Game Over, prevents further deductions, or has another effect. The current function only logs a message when points is already zero; it doesn't yet enforce a game outcome.
+[ ] Implement the secret ending — Choose the points threshold, check it at the intended moment, and route eligible players to the secret ending. Decide what happens to players below the threshold.
+[ ] Clean up happyBirthdayEnding() — Make the ending a proper end state: clear or replace the old choice buttons, show the final message, and make the replay path consistent with Game Over.
+[ ] Finish the birthday reveal details — Add the bouquet-in-a-vase detail when flowers are in inventory, then implement the confetti and optional birthday-wish interaction if you still want them.
+[ ] Verify replay resets everything — Ensure stats, points, inventory, ending state, and any visual effects are reset appropriately when a new run starts.
+
+Phase 2 — Organize the HTML
+[ ] Put the stats across the top — Create a clear stats bar for Luck, Jump, Swim, and Points. Keep it separate from the story and image areas.
+[ ] Clean up IDs and class names — Use unique IDs for elements JavaScript needs to select; use reusable classes for repeated styling, such as choice buttons, scene layout, and stat labels.
+[ ] Set up the main layout containers — Separate the stats bar, story/choice area on the left, and picture area on the right so each can be styled and updated independently.
+[ ] Check the HTML structure — Remove redundant wrappers, verify that elements are nested correctly, and ensure the JavaScript selectors match the final IDs.
+
+Phase 3 — Contextual right-side picture
+[ ] Create the picture container — Add a dedicated right-side div for scene artwork, separate from the story text and choice buttons.
+[ ] Choose the image for each scene — Map scenes or groups of scenes to the appropriate image: path, river, flower field, castle exterior, castle interior, window, and birthday room.
+[ ] Update the picture when a scene changes — Connect the image selection to showScene() so each transition updates the picture alongside the text and choices.
+[ ] Handle scenes without a dedicated image — Choose whether related scenes share an image or use a default image. Avoid broken-image icons when an image isn't assigned.
+[ ] Give the birthday reveal its own visual treatment — Use the party image for the reveal and ending; incorporate the bouquet when appropriate.
+
+Phase 4 — CSS styling and polish
+[ ] Style the overall layout — Build the desktop composition with the stats bar at the top, story and choices on the left, and artwork on the right.
+[ ] Style the story and choice buttons — Set readable text widths, spacing, button sizes, hover/focus states, and consistent spacing between choices.
+[ ] Apply the font pairing — Use Pixelify Sans and Rowdies intentionally, with a clear hierarchy between story text, headings, stats, and buttons.
+[ ] Style the stats bar and inventory — Make values easy to scan and keep the stats readable while the story changes.
+[ ] Make the layout responsive — Check smaller browser widths so the picture and story stack sensibly rather than getting cramped or overflowing.
+[ ] Polish scene transitions and the ending — Check image sizing, text overflow, spacing, and any celebratory effects in the final party scene.
+
+Phase 5 — Final QA and bonus ideas
+[ ] Replay the full QA checklist after changes — Points, layout, scene images, and ending logic can affect one another, so retest the full journey after implementation.
+[ ] Check browser console and assets — Look for JavaScript errors, missing images, broken paths, and unexpected behavior during repeated runs.
+[ ] Add any fun ideas that come up — Keep a small parking lot for extra jokes, hidden details, animations, sounds, and other surprises so they don't interrupt the core build.

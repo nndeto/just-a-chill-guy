@@ -142,8 +142,8 @@ let story = {
     castleWindow: {
         text: "You approach the window and notice that it is slightly open. You can see a ledge outside, but it looks like a drop to the ground below which has rocks scattered around. What do you do?",
         choices: [
-            { text: "Jump towards the ledge", action: () => jumpingStatCheck() },
-            { text: "But, seriously, you have to jump.", action: () => jumpingStatCheck() }
+            { text: "Jump towards the ledge", action: () => jumpStatCheck() },
+            { text: "But, seriously, you have to jump.", action: () => jumpStatCheck() }
         ]
     },
     castleWindowJumpSuccess: {
@@ -167,8 +167,8 @@ let story = {
     castleUpstairs: {
         text: "Taking the winding staircase upstairs, you arrive on the second floor landing and begin your search. Each room is empty, and the back of your neck prickles like someone is watching you. Are you scared?",
         choices: [
-            {text: "Yes", next: castleHonestGoHome},
-            {text: "No", next: castleLieGoHome}
+            {text: "Yes", next: "castleHonestGoHome"},
+            {text: "No", next: "castleLieGoHome"}
         ]
     },
     castleHonestGoHome: {
@@ -177,7 +177,7 @@ let story = {
             {text: "Quest Failed", action: gameOver}
         ]
     },
-    castleHonestGoHome: {
+    castleLieGoHome: {
         text: "Liar, liar, pants on fire. You search a few more rooms, but random sounds like eerie whispering and creaking floors get to you, and you run away.",
         choices: [
             {text: "Quest Failed", action: gameOver}
@@ -186,8 +186,8 @@ let story = {
     castleKitchen: {
         text: "Potraits line the hallway, and their eyes follow you. You end up in a kitchen. It's a mess. You see white powder on the counters and floors. Candles that have been abandoned and a mysterious liquid spilled on the floor. Keep Searching?",
         choices: [
-            {text: "Go upstairs", next: castleUpstairs},
-            {text: "Investigate the ajar door", next: casleAjarDoor}
+            {text: "Go upstairs", next: "castleUpstairs"},
+            {text: "Investigate the ajar door", next: "castleAjarDoor"}
         ]
     },
     castleAjarDoor: {
@@ -260,7 +260,7 @@ function luckKeyCheck() {
     return "castleUnluckyTree";     
 }
 
-function jumpingStatCheck() {
+function jumpStatCheck() {
     if (jumpStat >= 7) {
         return "castleWindowJumpSuccess"; }
     if (jumpStat >= 4) {
