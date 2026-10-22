@@ -1,16 +1,19 @@
 //GLOBAL VARIABLES//
-let startButton = document.getElementById("start-button");
-let introText = document.getElementById("intro-text");
-let gamePlayArea = document.getElementById("game-play");
 let luckStat;
 let jumpStat;
 let swimStat;
-let inventory = [];
 let points = 5;
+let inventory = [];
+let startButton = document.getElementById("start-button");
+let introText = document.getElementById("intro-text");
+let gamePlayArea = document.getElementById("game-play");
+let luckText = document.getElementById("luck")
+let jumpText = document.getElementById("jump")
+let swimText = document.getElementById("swim")
+let pointsText = document.getElementById("points")
 
 
-
-// Each scene has text and choices
+//STORY SCENES//
 let story = {
     start: {
         text: "You actually started the quest?! Brave soul. You find yourself before a split path. Which way do you go?",
@@ -159,8 +162,7 @@ let story = {
         choices: [
             {text: "You have met an untimely end.", action: gameOver}
         ]
-    
-    }
+    },
 };
 
 //FUNCTIONS//
@@ -169,21 +171,36 @@ function startQuest() {
     startButton.disabled = true; // Disable the start button after starting
     startButton.textContent = "Questing..."
     introText.style.display = "none"; // Hide the intro text
-    luckStat = randomizeStat();
-    jumpStat = randomizeStat();
-    swimStat = randomizeStat();
-    inventory = [];
-    points = 5;
+    setStats()
     showScene("start");
     gamePlayArea.style.display = "block"; // Show the game play area
 }
+
+function setStats() {
+    inventory = [];
+    points = 5;
+    luckStat = randomizeStat();
+    jumpStat = randomizeStat();
+    swimStat = randomizeStat();
+    luckText.textContent = `Luck: ${luckStat}`;
+    jumpText.textContent = `Jump: ${jumpStat}`;
+    swimText.textContent = `Swim: ${swimStat}`;
+    pointsText.textContent = `Points: ${points}`;
+    return;
+}
+
 
 function randomizeStat () {
     return Math.floor(Math.random() * 10) + 1
 }
 
-function pointStatMath(value) { //TBC
-    return `Points: ${points + value}`
+function pointStatMath(value) {
+    if (points === 0) {
+        console.log("You've reached zero points.")
+        return
+    }
+    points = points +value
+    return points
 }
 
 function twoThirdChance(optionA, optionB) {
