@@ -11,6 +11,7 @@ let luckText = document.getElementById("luck")
 let jumpText = document.getElementById("jump")
 let swimText = document.getElementById("swim")
 let pointsText = document.getElementById("points")
+let sceneText = document.getElementById("story")
 
 
 //STORY SCENES//
@@ -108,7 +109,7 @@ let story = {
     castleInside: {
         text: "You successfully enter the castle. Inside, you find a grand hall with a staircase leading up, a hallway leading to other rooms, and a slightly ajar door. Where do you go?",
         choices: [ 
-            { text: "Go up the staircase", next: "castleStairs" },
+            { text: "Go up the staircase", next: "castleUpstairs" },
             { text: "Take the hallway", next: "castleKitchen" },
             { text: "Investigate the ajar door", next: "castleAjarDoor" }
         ]
@@ -163,19 +164,41 @@ let story = {
             {text: "You have met an untimely end.", action: gameOver}
         ]
     },
+    castleUpstairs: {
+        text: "Taking the winding staircase upstairs, you arrive on the second floor landing and begin your search. Each room is empty, and the back of your neck prickles like someone is watching you. Are you scared?",
+        choices: [
+            {text: "Yes", next: castleHonestGoHome},
+            {text: "No", next: castleLieGoHome}
+        ]
+    },
+    castleHonestGoHome: {
+        text: "We knew it! You hightail it out of the castle without a second thought, quest forgotten.",
+        choices: [
+            {text: "Quest Failed", action: gameOver}
+        ]
+    },
+    castleHonestGoHome: {
+        text: "Liar, liar, pants on fire. You search a few more rooms, but random sounds like eerie whispering and creaking floors get to you, and you run away.",
+        choices: [
+            {text: "Quest Failed", action: gameOver}
+        ]
+    },
+    castleKitchen: {
+        text: "Potraits line the hallway, and their eyes follow you. You end up in a kitchen. It's a mess. You see white powder on the counters and floors. Candles that have been abandoned and a mysterious liquid spilled on the floor. Keep Searching?",
+        choices: [
+            {text: "Go upstairs", next: castleUpstairs},
+            {text: "Investigate the ajar door", next: casleAjarDoor}
+        ]
+    },
+    castleAjarDoor: {
+        text: "With a swallow, you tell yourself to be brave and open the door that first caught your attention when you walked in. You take the stairs one step at a time, heart pounding in your ears. When you make it all the way down, you find yourself in a dimly lit space with a table and some chairs. Feeling along the wall for a lightswitch, you flip it on, at the same time your friends jump out from behind the table. They begin to sing you happy birthday. Cake with lit candles, a punch bowl, and presents materialize on the table. What do you do?",
+        choices: [
+            {text: "Blow out your candles", action: () => happyBirthdayEnding()}
+        ]
+    }
 };
 
 //FUNCTIONS//
-function startQuest() {
-    console.log("Quest started!");
-    startButton.disabled = true; // Disable the start button after starting
-    startButton.textContent = "Questing..."
-    introText.style.display = "none"; // Hide the intro text
-    setStats()
-    showScene("start");
-    gamePlayArea.style.display = "block"; // Show the game play area
-}
-
 function setStats() {
     inventory = [];
     points = 5;
@@ -188,7 +211,6 @@ function setStats() {
     pointsText.textContent = `Points: ${points}`;
     return;
 }
-
 
 function randomizeStat () {
     return Math.floor(Math.random() * 10) + 1
@@ -246,7 +268,17 @@ function jumpingStatCheck() {
     return "castleWindowJumpFailure";     
 }
 
-function gameOver(){
+function startQuest() {
+    console.log("Quest started!");
+    startButton.disabled = true; // Disable the start button after starting
+    startButton.textContent = "Questing..."
+    introText.style.display = "none"; // Hide the intro text
+    setStats()
+    showScene("start");
+    gamePlayArea.style.display = "block"; // Show the game play area
+}
+
+function gameOver() {
     alert("Game Over!");
     gamePlayArea.style.display = "none"; // Hide the game play area
     introText.style.display = "block"; // Show the intro text again
@@ -254,10 +286,19 @@ function gameOver(){
     startButton.textContent = "Try again?"; // Reset button text
 }
 
+function happyBirthdayEnding() {
+    sceneText.textContent = "All your friends got together to wish you a happy birthday and celebrate how wonderful you are, fearless hero!"
+    //if bouquet in inventory add it into a flower vase
+    //here is where confetti pops
+    //idea: alert input box with what is your wish
+    startButton.disabled = false; // Re-enable the start button
+    startButton.textContent = "Play again?"; // Reset button text
+}
+
 function showScene(sceneKey) {
     let scene = story[sceneKey];
     // Display the story text
-    document.getElementById("story").innerText = scene.text;
+    sceneText.innerText = scene.text;
     // Clear old buttons
     let buttonArea = document.getElementById("choices");
 
