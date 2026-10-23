@@ -350,6 +350,7 @@ function gameOver() {
     introHeader.textContent = "Hey there, just a chill guy!";
 }
 
+
 function showEnding({ text, includeFlowers = false, wishPrompt = false }) {
     sceneText.textContent = text;
 
@@ -361,7 +362,7 @@ function showEnding({ text, includeFlowers = false, wishPrompt = false }) {
     launchConfetti();
     buttonArea.style.display = "none";
 
-    startButton.disabled = false;
+    startButton.disabled = wishPrompt;
     startButton.textContent = "Play again?";
 
     if (wishPrompt) {
@@ -371,11 +372,14 @@ function showEnding({ text, includeFlowers = false, wishPrompt = false }) {
             );
 
             if (wish !== null && wish.trim() !== "") {
-                sceneText.textContent += ` I hope your wish comes true!`;
+                sceneText.textContent += " I hope the universe grants your wish!";
             }
+
+            startButton.disabled = false;
         }, 2500);
     }
 }
+
 
 function happyBirthdayEnding() {
     if (points >= 5) {
