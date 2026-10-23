@@ -1,10 +1,11 @@
 //GLOBAL VARIABLES//
-let luckStat;
-let jumpStat;
+let luckStat =7;
+let jumpStat =7;
 let swimStat;
 let points = 5;
 let inventory = [];
 let startButton = document.getElementById("start-button");
+let introHeader = document.getElementById("h1")
 let introText = document.getElementById("intro-text");
 let gamePlayArea = document.getElementById("game-play");
 let luckText = document.getElementById("luck")
@@ -203,8 +204,8 @@ let story = {
 function setStats() {
     inventory = [];
     points = 5;
-    luckStat = randomizeStat();
-    jumpStat = randomizeStat();
+    // luckStat = randomizeStat();
+    // jumpStat = randomizeStat();
     swimStat = randomizeStat();
     luckText.textContent = `Luck: ${luckStat}`;
     jumpText.textContent = `Jump: ${jumpStat}`;
@@ -227,7 +228,12 @@ function pointStatMath(value) {
 }
 
 function twoThirdChance(optionA, optionB) {
-    return Math.random() < 0.66 ? optionA : optionB;
+    let choice = Math.random() < 0.66 ? optionA : optionB;
+    console.log(choice)
+    if (choice === optionA) {
+        story.flowerPickSuccess.choices[0].inventory(); //call inventory if choice has one
+    }
+    return choice
 }
 
  function fiftyFiftyChance(optionA, optionB) {
@@ -235,8 +241,7 @@ function twoThirdChance(optionA, optionB) {
 }
 
 function inventoryAdd(item) {
-    // Add the item to the inventory (this is a placeholder, implement as needed)
-    console.log(`Added ${item} to inventory.`);
+    // console.log(`Added ${item} to inventory.`);
     inventory.push(item);
     return 
 }
@@ -270,14 +275,14 @@ function jumpStatCheck() {
 }
 
 function startQuest() {
-    console.log("Quest started!");
+    // console.log("Quest started!");
+    introText.style.display = "none"; // Hide the intro text
+    introHeader.textContent = "Oh, just a chill hero?" //switch up header text
     startButton.disabled = true; // Disable the start button after starting
     startButton.textContent = "Questing..."
-    introText.style.display = "none"; // Hide the intro text
     gamePlayArea.style.display = "block"; // Show the game play area
     setStats()
     showScene("start");
-    launchConfetti()
 }
 
 function gameOver() {
@@ -286,6 +291,7 @@ function gameOver() {
     introText.style.display = "block"; // Show the intro text again
     startButton.disabled = false; // Re-enable the start button
     startButton.textContent = "Try again?"; // Reset button text
+    introHeader.textContent = "Hey there, just a chill guy!" //reset header text
 }
 
 function happyBirthdayEnding() {
@@ -310,9 +316,6 @@ function showScene(sceneKey) {
         choiceBtn.innerText = choice.text;
 
         choiceBtn.onclick = function() {
-            if (choice.inventory) {
-                choice.inventory(); //call inventory if choice has one
-            }
             if (choice.action) {
                 let nextScene = choice.action();
                 if (nextScene) {

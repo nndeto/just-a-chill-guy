@@ -1,32 +1,32 @@
 A. Starting the quest and stats
-[ ] Start button launches the quest exactly once per click.
-[ ] Intro text hides and the gameplay area appears.
-[ ] Luck, Jump, and Swim each randomize to a whole number from 1–10.
+[X] Start button launches the quest exactly once per click.
+[X] Intro text hides and the gameplay area appears.
+[X] Luck, Jump, and Swim each randomize to a whole number from 1–10.
 [ ] Points starts at 5 on every new run.
-[ ] Inventory starts empty on every new run.
-[ ] Stats remain consistent throughout a run rather than rerandomizing between scenes.
+[X] Inventory starts empty on every new run.
+[X] Stats remain consistent throughout a run rather than rerandomizing between scenes.
 
 B. Left path — river
-[ ] Choosing Go left leads to the river scene.
-[ ] Swim across with Swim 7–10 leads to riverSwimCross, then path.
-[ ] Swim across with Swim 4–6 leads to riverSweptAway, then path.
-[ ] Swim across with Swim 1–3 leads to riverDrown, then Game Over.
-[ ] Look for a bridge leads to riverBridge, then path.
-[ ] Wait for a boat can produce riverBoatSuccess, then path.
-[ ] Wait for a boat can produce riverBoatFailure, then Game Over.
-[ ] Boat chance result changes the scene correctly; it doesn't leave the river text/buttons stuck.
+[X] Choosing Go left leads to the river scene.
+[X] Swim across with Swim 7–10 leads to riverSwimCross, then path.
+[X] Swim across with Swim 4–6 leads to riverSweptAway, then path.
+[X] Swim across with Swim 1–3 leads to riverDrown, then Game Over.
+[X] Look for a bridge leads to riverBridge, then path.
+[X] Wait for a boat can produce riverBoatSuccess, then path.
+[X] Wait for a boat can produce riverBoatFailure, then Game Over.
+[X] Boat chance result changes the scene correctly; it doesn't leave the river text/buttons stuck.
 
 C. Right path — flower field
-[ ] Choosing Go right leads to flowerField.
-[ ] Continue journey goes straight to path.
-[ ] Stop and admire flowers goes to flowerAdmire, then path.
-[ ] Pick some flowers can produce flowerPickSuccess.
-[ ] Picking flowers can also produce flowerPickFailure, then Game Over.
-[ ] On flowerPickSuccess, the bouquet is added to inventory when Continue journey is clicked.
-[ ] Flower-picking chance result changes the scene correctly.
+[X] Choosing Go right leads to flowerField.
+[X] Continue journey goes straight to path.
+[X] Stop and admire flowers goes to flowerAdmire, then path.
+[X] Pick some flowers can produce flowerPickSuccess.
+[X] Picking flowers can also produce flowerPickFailure, then Game Over.
+[X] On flowerPickSuccess, the bouquet is added to inventory when Continue journey is clicked.
+[X] Flower-picking chance result changes the scene correctly.
 
 D. Reaching and entering the castle
-[ ] Both river and flower routes can reach path, then castle.
+[X] Both river and flower routes can reach path, then castle.
 [ ] At castle, Check out the window leads to castleWindow.
 [ ] Try the door with Luck 6–10 leads to castleInside.
 [ ] Try the door with Luck 1–5 leads to castleLookAround.
@@ -65,9 +65,9 @@ G. Game over, ending, and replay
 [ ] Replay after a successful ending works just as reliably as replay after Game Over.
 
 H. General logic and UI checks
-[ ] Every visible choice button responds to one click and advances only once.
+[X] Every visible choice button responds to one click and advances only once.
 [ ] No scene displays undefined text or causes a console error.
-[ ] No button from a previous scene remains after moving to a new scene.
+[X] No button from a previous scene remains after moving to a new scene.
 [ ] Every scene reached by a choice has the exact matching key in story.
 [ ] Stats and points display the correct current values.
 [ ] Inventory does not gain flowers unless the successful flower-picking route is completed.
