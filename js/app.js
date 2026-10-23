@@ -121,7 +121,7 @@ let story = {
         ]
     },
     flowerPickFailure: {
-        text: "You try to pick some flowers in a hurry, but a bee stings you. You feel a sharp pain, and your throat swells up. You realize you are allergic and collapse.",
+        text: "Oh, no! As you pick the flowers, a bee flies out and stings you. You feel a sharp pain, and your throat swells up. You realize you are allergic and collapse.",
         choices: [
             { text: "You have met an untimely end", action: gameOver }
         ]
