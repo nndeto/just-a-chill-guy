@@ -2,7 +2,7 @@
 let luckStat;
 let jumpStat;
 let swimStat;
-let points = 5;
+let points = 3;
 let inventory = [];
 let startButton = document.getElementById("start-button");
 let introHeader = document.getElementById("h1")
@@ -42,7 +42,7 @@ let story = {
     riverSweptAway: {
         text: "You attempt to swim across the river, but the current is stronger than you anticipated. You are swept downstream but eventually wash up on the opposite bank.",
         choices: [
-            { text: "Collapsing on the bank, you rest before starting again", next: "path" }
+            { text: "Collapsing on the bank, you rest before starting again", next: "path", effects:[ () =>  pointStatMath(-1) ] }
         ]
     },
     riverDrown: {
@@ -60,7 +60,7 @@ let story = {
     riverBoatSuccess: {
         text: "You decide to wait for a boat. After a while, a small boat appears and ferries you across the river safely. You eye the path ahead, anxious to continue.",
         choices: [
-            { text: "Wave bye to the ferryman!", next: "path" }
+            { text: "Wave bye to the ferryman!", next: "path", effects: [ () =>  pointStatMath(-2) ]  }
         ]
     },
     riverBoatFailure: {
@@ -72,8 +72,8 @@ let story = {
     flowerField: {
         text: "You follow the right path and find yourself in a beautiful field of flowers. What do you do?",   
         choices: [
-            { text: "Continue journey", next: "path" },
-            { text: "Stop and admire flowers", next: "flowerAdmire" },
+            { text: "Walk past", next: "path", effects: [ () =>  pointStatMath(-2) ] },
+            { text: "Stop and admire flowers", next: "flowerAdmire", effects: [ () =>  pointStatMath(1) ] },
             { text: "Pick some flowers", action: () => twoThirdChance("flowerPickSuccess", "flowerPickFailure")  }
         ]
     },
@@ -86,7 +86,7 @@ let story = {
     flowerPickSuccess: {
         text: "You pick some flowers and they smell wonderful. You add them to your bag and continue your journey.",
         choices: [
-            { text: "Continue journey", next: "path", inventory: () => inventoryAdd("flowers")}
+            { text: "Continue journey", next: "path", effects: [ () => inventoryAdd("flowers"), () =>  pointStatMath(2) ] }
         ]
     },
     flowerPickFailure: {
@@ -157,7 +157,7 @@ let story = {
     castleWindowJumpAgain: {
         text: "Biting your lip, you take a breath, and jump towards the ledge. You miss by a hair's breadth. Motivated, you shake it out and prepare to jump again. Grabbing the ledge this time, you smile in triumph.",
         choices: [
-            { text: "Twice? Aren't you athletic. Now, pull yourself up. ", next: "castleInside"}
+            { text: "Twice? Aren't you athletic. Now, pull yourself up. ", next: "castleInside", effects: [ () =>  pointStatMath(-2) ] }
         ]
     },
     castleWindowJumpFailure: {
@@ -219,21 +219,13 @@ function randomizeStat () {
 }
 
 function pointStatMath(value) {
-    if (points === 0) {
-        console.log("You've reached zero points.")
-        return
-    }
-    points = points + value
-    return points
+    points = Math.max(0, points + value);
+    pointsText.textContent = `Points: ${points}`;
+    return points;
 }
 
 function twoThirdChance(optionA, optionB) {
-    let choice = Math.random() < 0.66 ? optionA : optionB;
-    console.log(choice)
-    if (choice === optionA) {
-        story.flowerPickSuccess.choices[0].inventory(); //call inventory if choice has one
-    }
-    return choice
+    return Math.random() < 0.66 ? optionA : optionB;
 }
 
  function fiftyFiftyChance(optionA, optionB) {
@@ -257,6 +249,7 @@ function swimStatCheck() {
 function luckDoorCheck() {
     if (luckStat >= 6) {
         return "castleInside"; }
+    pointStatMath(-1)
     return "castleLookAround";     
 }
 
@@ -295,16 +288,52 @@ function gameOver() {
     introHeader.textContent = "Hey there, just a chill guy!" //reset header text
 }
 
-function happyBirthdayEnding() {
-    sceneText.textContent = "All your friends got together to wish you a happy birthday and celebrate how wonderful you are, fearless hero!"
-    if (inventory.length > 0) {
-        sceneText.textContent+= " The flowers you picked will make a great bouquet. Raccoon takes them from you and puts them in a vase."
+
+function showEnding({ text, includeFlowers = false, wishPrompt = false }) {
+    sceneText.textContent = text;
+
+    if (includeFlowers && inventory.includes("flowers")) {
+        sceneText.textContent +=
+            " The flowers you picked will make a great bouquet. Raccoon takes them from you and puts them in a vase.";
     }
-    launchConfetti() //here is where confetti pops //NEED TO SOLVE FOR IT NOT STOPPING w/confetti.reset() in start quest b/c of duration
-    //idea: alert input box with what is your wish
-    buttonArea.style.display = "none"
-    startButton.disabled = false; // Re-enable the start button
-    startButton.textContent = "Play again?"; // Reset button text
+
+    if (wishPrompt) {
+        let wish = prompt(
+            "You have enough points to make a wish! What is your wish?"
+        );
+
+        if (wish !== null && wish.trim() !== "") {
+            sceneText.textContent += ` Your wish: ${wish.trim()}.`;
+        }
+    }
+
+    launchConfetti();
+
+    buttonArea.style.display = "none";
+
+    startButton.disabled = false;
+    startButton.textContent = "Play again?";
+}
+
+
+function happyBirthdayEnding() {
+    if (points >= 5) {
+        secretEnding();
+        return;
+    }
+
+    showEnding({
+        text: "All your friends got together to wish you a happy birthday and celebrate how wonderful you are, fearless hero!",
+        includeFlowers: true
+    });
+}
+
+function secretEnding() {
+    showEnding({
+        text: "All your friends got together to wish you a happy birthday and celebrate how wonderful you are, fearless hero! Your thoughtful choices have earned you a special birthday wish.",
+        includeFlowers: true,
+        wishPrompt: true
+    });
 }
 
 function showScene(sceneKey) {
@@ -318,6 +347,9 @@ function showScene(sceneKey) {
         choiceBtn.innerText = choice.text;
 
         choiceBtn.onclick = function() {
+           if (choice.effects) {
+                choice.effects.forEach(effect => effect());
+            }
             if (choice.action) {
                 let nextScene = choice.action();
                 if (nextScene) {
