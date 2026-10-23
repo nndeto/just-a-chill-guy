@@ -281,6 +281,7 @@ function startQuest() {
     startButton.disabled = true; // Disable the start button after starting
     startButton.textContent = "Questing..."
     gamePlayArea.style.display = "block"; // Show the game play area
+    buttonArea.style.display = "block"
     setStats()
     showScene("start");
 }
@@ -296,11 +297,12 @@ function gameOver() {
 
 function happyBirthdayEnding() {
     sceneText.textContent = "All your friends got together to wish you a happy birthday and celebrate how wonderful you are, fearless hero!"
-    if (inventory) {
+    if (inventory.length > 0) {
         sceneText.textContent+= " The flowers you picked will make a great bouquet. Raccoon takes them from you and puts them in a vase."
     }
-    launchConfetti() //here is where confetti pops
+    launchConfetti() //here is where confetti pops //NEED TO SOLVE FOR IT NOT STOPPING w/confetti.reset() in start quest b/c of duration
     //idea: alert input box with what is your wish
+    buttonArea.style.display = "none"
     startButton.disabled = false; // Re-enable the start button
     startButton.textContent = "Play again?"; // Reset button text
 }
@@ -331,7 +333,7 @@ function showScene(sceneKey) {
 
 function launchConfetti() {
         // do this for 30 seconds
-    let duration = 30 * 1000;
+    let duration = 20 * 1000;
     let end = Date.now() + duration;
 
     (function frame() {
@@ -355,6 +357,7 @@ function launchConfetti() {
             requestAnimationFrame(frame);
         }
     }());
+            
 }
 
 //EVENT LISTENERS//

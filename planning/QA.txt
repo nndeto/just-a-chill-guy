@@ -45,24 +45,24 @@ E. Castle window — Jump checks
 [X] After a jump result, the next button appears and takes you to the expected scene.
 
 F. Castle interior and birthday reveal
-[ ] From castleInside, Go up the staircase leads to castleUpstairs.
-[ ] From castleInside, Take the hallway leads to castleKitchen.
+[X] From castleInside, Go up the staircase leads to castleUpstairs.
+[X] From castleInside, Take the hallway leads to castleKitchen.
 [ ] From castleInside, Investigate the ajar door leads to castleAjarDoor.
-[ ] From castleKitchen, Go upstairs leads to castleUpstairs.
-[ ] From castleKitchen, Investigate the ajar door leads to castleAjarDoor.
-[ ] At castleUpstairs, Yes leads to castleHonestGoHome, then Game Over.
-[ ] At castleUpstairs, No leads to castleLieGoHome, then Game Over.
-[ ] At castleAjarDoor, the birthday reveal text appears.
-[ ] Blow out your candles triggers happyBirthdayEnding.
+[X] From castleKitchen, Go upstairs leads to castleUpstairs.
+[X] From castleKitchen, Investigate the ajar door leads to castleAjarDoor.
+[X] At castleUpstairs, Yes leads to castleHonestGoHome, then Game Over.
+[X] At castleUpstairs, No leads to castleLieGoHome, then Game Over.
+[X] At castleAjarDoor, the birthday reveal text appears.
+[X] Blow out your candles triggers happyBirthdayEnding.
 
 G. Game over, ending, and replay
-[ ] Every death/failure scene reaches gameOver when its final button is clicked.
-[ ] Game Over hides the gameplay area and restores the intro screen.
-[ ] The retry button is enabled and starts a fresh run.
+[X] Every death/failure scene reaches gameOver when its final button is clicked.
+[X] Game Over hides the gameplay area and restores the intro screen.
+[X] The retry button is enabled and starts a fresh run.
 [ ] Retry resets points to 5, clears inventory, and rolls fresh stats.
-[ ] The birthday ending leaves a clear, usable way to start another run.
-[ ] After the birthday ending, the old Blow out your candles button cannot trigger the ending repeatedly.
-[ ] Replay after a successful ending works just as reliably as replay after Game Over.
+[X] The birthday ending leaves a clear, usable way to start another run.
+[X] After the birthday ending, the old Blow out your candles button cannot trigger the ending repeatedly.
+[X] Replay after a successful ending works just as reliably as replay after Game Over.
 
 H. General logic and UI checks
 [X] Every visible choice button responds to one click and advances only once.
@@ -70,6 +70,6 @@ H. General logic and UI checks
 [X] No button from a previous scene remains after moving to a new scene.
 [ ] Every scene reached by a choice has the exact matching key in story.
 [ ] Stats and points display the correct current values.
-[ ] Inventory does not gain flowers unless the successful flower-picking route is completed.
-[ ] The key is not expected to remain in inventory; it is used to enter the castle.
+[X] Inventory does not gain flowers unless the successful flower-picking route is completed.
+[X] The key is not expected to remain in inventory; it is used to enter the castle.
 [ ] Repeated runs don't carry over old inventory, points, or leftover scene buttons.
