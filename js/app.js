@@ -1,6 +1,6 @@
 //GLOBAL VARIABLES//
-let luckStat =7;
-let jumpStat =7;
+let luckStat;
+let jumpStat;
 let swimStat;
 let points = 5;
 let inventory = [];
@@ -204,8 +204,8 @@ let story = {
 function setStats() {
     inventory = [];
     points = 5;
-    // luckStat = randomizeStat();
-    // jumpStat = randomizeStat();
+    luckStat = randomizeStat();
+    jumpStat = randomizeStat();
     swimStat = randomizeStat();
     luckText.textContent = `Luck: ${luckStat}`;
     jumpText.textContent = `Jump: ${jumpStat}`;

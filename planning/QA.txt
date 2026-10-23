@@ -27,22 +27,22 @@ C. Right path — flower field
 
 D. Reaching and entering the castle
 [X] Both river and flower routes can reach path, then castle.
-[ ] At castle, Check out the window leads to castleWindow.
-[ ] Try the door with Luck 6–10 leads to castleInside.
-[ ] Try the door with Luck 1–5 leads to castleLookAround.
-[ ] From castleLookAround, Head for the tree leads to castleTree.
-[ ] From castleLookAround, Head for the window leads to castleWindow.
-[ ] At castleTree, Luck 5–10 leads to castleKeyFound.
-[ ] At castleTree, Luck 1–4 leads to castleUnluckyTree, then castleWindow.
-[ ] Using the found key leads to castleInside.
-[ ] Getting inside via the key, door, or window works without a missing-scene error.
+[X] At castle, Check out the window leads to castleWindow.
+[X] Try the door with Luck 6–10 leads to castleInside.
+[X] Try the door with Luck 1–5 leads to castleLookAround.
+[X] From castleLookAround, Head for the tree leads to castleTree.
+[X] From castleLookAround, Head for the window leads to castleWindow.
+[X] At castleTree, Luck 5–10 leads to castleKeyFound.
+[X] At castleTree, Luck 1–4 leads to castleUnluckyTree, then castleWindow.
+[X] Using the found key leads to castleInside.
+[X] Getting inside via the key, door, or window works without a missing-scene error.
 
 E. Castle window — Jump checks
-[ ] Jumping with Jump 7–10 leads to castleWindowJumpSuccess, then castleInside.
-[ ] Jumping with Jump 4–6 leads to castleWindowJumpAgain, then castleInside.
-[ ] Jumping with Jump 1–3 leads to castleWindowJumpFailure, then Game Over.
-[ ] Both window choice buttons trigger the jump check.
-[ ] After a jump result, the next button appears and takes you to the expected scene.
+[X] Jumping with Jump 7–10 leads to castleWindowJumpSuccess, then castleInside.
+[X] Jumping with Jump 4–6 leads to castleWindowJumpAgain, then castleInside.
+[X] Jumping with Jump 1–3 leads to castleWindowJumpFailure, then Game Over.
+[X] Both window choice buttons trigger the jump check.
+[X] After a jump result, the next button appears and takes you to the expected scene.
 
 F. Castle interior and birthday reveal
 [ ] From castleInside, Go up the staircase leads to castleUpstairs.
