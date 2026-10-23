@@ -27,35 +27,35 @@ let story = {
         ]
     },
     river: {
-        text: "You follow the left path and arrive at a sparkling blue river. The water moves quickly, and it's hard for you to guage how far off the other side is. How will you cross?",
+        text: "You follow the left path and arrive at a sparkling blue river. The water moves quickly, and it's hard for you to guage how far the other side is. How will you cross?",
         choices: [
             { text: "Swim across", action: swimStatCheck },
-            { text: "Look for a bridge", next: "riverBridge" },
+            { text: "Find a bridge", next: "riverBridge" },
             { text: "Wait for a boat", action: () => fiftyFiftyChance("riverBoatSuccess", "riverBoatFailure") }
         ]
     },
     riverSwimCross: {
-        text: "You successfully make it across the river! You find yourself on the other side, but the path ahead is unclear.",
+        text: "You successfully make it across! Shaking the water off, you're already gazing ahead at the unclear path.",
         choices: [
             {
-                text: "Take a breather and continue",
+                text: "Finish drying",
                 next: "path",
                 effects: [() => pointStatMath(1)]
             }
         ]
     },
     riverSweptAway: {
-        text: "You attempt to swim across the river, but the current is stronger than you anticipated. You are swept downstream but eventually wash up on the opposite bank.",
+        text: "You attempt to swim across the river, but the current is stronger than you thought! You are swept downstream but wash ashore on the opposite bank. Catch your breath, before continuing.",
         choices: [
             {
-                text: "Collapsing on the bank, you rest before starting again",
+                text: "Onward",
                 next: "path",
                 effects: [() => pointStatMath(-1)]
             }
         ]
     },
     riverDrown: {
-        text: "You attempt to swim across the river, but the current is too strong. You are swept away. You struggle to keep your head above water, but eventually you succumb to the river's pull and drown.",
+        text: "You attempt to swim across the river, but the current is too strong! You are swept away. Struggling in vain, you succumb to the river's pull and drown.",
         choices: [
             { text: "You have met an untimely end", action: gameOver }
         ]
@@ -63,23 +63,23 @@ let story = {
     riverBridge: {
         text: "You decide to look for a bridge. After a short walk, you find a sturdy wooden bridge that allows you to cross the river safely.",
         choices: [
-            { text: "Continue journey", next: "path" }
+            { text: "Onward", next: "path" }
         ]
     },
     riverBoatSuccess: {
-        text: "You decide to wait for a boat. After a while, a small boat appears and ferries you across the river safely. You eye the path ahead, anxious to continue.",
+        text: "You decide to wait for a boat. After a while, a small boat appears and ferries you across the river. Warily, you eye the path ahead, anxious to continue.",
         choices: [
             {
-                text: "Wave bye to the ferryman!",
+                text: "Wave bye to the ferryman",
                 next: "path",
                 effects: [() => pointStatMath(1)]
             }
         ]
     },
     riverBoatFailure: {
-        text: "You decide to wait for a boat. After a long, long, long wait, no boat comes. Your stomach growls, and you realize you have no food or water. You decide to go home.",
+        text: "You decide to wait for a boat. After a long, long, longgggg wait, no boat comes. Stomach growling, you realize you have no provisions. You return home.",
         choices: [
-            { text: "Going home? What a quitter.", action: gameOver }
+            { text: "Done already? What a quitter.", action: gameOver }
         ]
     },
     flowerField: {
@@ -91,7 +91,7 @@ let story = {
                 effects: [() => pointStatMath(-2)]
             },
             {
-                text: "Stop and admire flowers",
+                text: "Admire the flowers",
                 next: "flowerAdmire",
                 effects: [() => pointStatMath(1)]
             },
@@ -102,16 +102,16 @@ let story = {
         ]
     },
     flowerAdmire: {
-        text: "You stop to admire the flowers. The colors are mesmerizing, the scents are intoxicating and you feel a deep connection to nature.",
+        text: "You stop to admire the flowers their colors mesmerizing you. Breathing deeply, the intoxicating scent fills your nostrils, and you feel light and hopeful.",
         choices: [
-            { text: "Continue journey", next: "path" }
+            { text: "Onward", next: "path" }
         ]
     },
     flowerPickSuccess: {
-        text: "You pick some flowers and they smell wonderful. You add them to your bag and continue your journey.",
+        text: "You take your time to pick the flowers that catch your eye. Careful to not disturb the bees collecting nectar. Smiling, you add your whimsical bouquet to your bag. ",
         choices: [
             {
-                text: "Continue journey",
+                text: "Onward",
                 next: "path",
                 effects: [
                     () => inventoryAdd("flowers"),
@@ -121,74 +121,74 @@ let story = {
         ]
     },
     flowerPickFailure: {
-        text: "You try to pick some flowers, but a bee flies out and stings you. You feel a sharp pain and your throat swells up. You realize you are allergic to bee stings and you collapse.",
+        text: "You try to pick some flowers in a hurry, but a bee stings you. You feel a sharp pain, and your throat swells up. You realize you are allergic and collapse.",
         choices: [
             { text: "You have met an untimely end", action: gameOver }
         ]
     },
     path: {
-        text: "You walk the path for what feels like hours. You decide to talk to yourself to keep your spirits up, still unsure what you're searching for. Squinting, you see a castle in the distance.",
+        text: "It feels like you've been walking the path for hours. To keep your spirits up, you start whistling to yourself. You're still unsure what you're searching for, but the questions fade as a castle appears on the horizon.",
         choices: [
             { text: "Hurry up!", next: "castle" }
         ]
     },
     castle: {
-        text: "You arrive at the castle, gazing up at its stone walls covered in ivy. You notice a door and a window. Which do you approach?",
+        text: "You arrive at the castle. It's ancient and mysterious, with stone walls covered in ivy. You notice a door and a window. Which do you approach?",
         choices: [
-            { text: "Try the door", action: () => luckDoorCheck() },
-            { text: "Check out the window", next: "castleWindow" }
+            { text: "The door", action: () => luckDoorCheck() },
+            { text: "The window", next: "castleWindow" }
         ]
     },
     castleInside: {
-        text: "You successfully enter the castle. Inside, you find a grand hall with a staircase leading up, a hallway leading to other rooms, and a slightly ajar door. Where do you go?",
+        text: "You make it inside the castle and find yourself in the foyer. An ornate staircase leads up to a second landing, a hallway lined with portraits spans before you, and tucked in the right-corner is a slightly ajar door. Which way do you go?",
         choices: [
-            { text: "Go up the staircase", next: "castleUpstairs" },
-            { text: "Take the hallway", next: "castleKitchen" },
+            { text: "Up the stairs", next: "castleUpstairs" },
+            { text: "Down the hall", next: "castleKitchen" },
             {
-                text: "Investigate the ajar door",
+                text: "Investigate the door",
                 next: "castleAjarDoor",
                 effects: [() => pointStatMath(1)]
             }
         ]
     },
     castleLookAround: {
-        text: "You try the door, but it is locked. Grumbling, you look around and notice a window, but you also see a tree nearby that could be a good hiding spot for a key. What do you do?",
+        text: "Jiggling the handle, you grumble as the door stays put. You glance at the window, but also see a tree nearby. Something about the tree piques your curiosity. Where do you go?",
         choices: [
-            { text: "Head for the tree", next: "castleTree" },
-            { text: "Head for the window", next: "castleWindow" }
+            { text: "To the tree", next: "castleTree" },
+            { text: "To the window", next: "castleWindow" }
         ]
     },
     castleTree: {
-        text: "You approach the tree and and walk around it, wondering where a key could be hidden. You notice a small hole in the trunk.",
+        text: "Walking around the tree, you notice a small hollow in the trunk. Hm, could a key be hidden in there?",
         choices: [
-            { text: "Reach inside the hole", action: () => luckKeyCheck() }
+            { text: "Check the abyss", action: () => luckKeyCheck() }
         ]
     },
     castleKeyFound: {
-        text: "You reach inside the hole and feel around. Your hand brushes against something cold and metallic. You pull out a small key, covered in dirt but still intact. You take it and head back to the door.",
+        text: "The inside of the hole is damp and cobwebby, but your hand brushes against something cold and metallic. You pull out a small key.",
         choices: [
             {
-                text: "Use the key to open the door",
+                text: "Unlock the door",
                 next: "castleInside",
                 effects: [() => pointStatMath(1)]
             }
         ]
     },
     castleUnluckyTree: {
-        text: "You reach inside the hole but come up empty-handed. Shaking your head, you laught at how silly you are for thinking there would be a key there. Perhaps you should try a different approach.",
+        text: "The inside of the hole is damp, cobwebby, and empty. You pull your hand out, shake it, and laugh at how silly you are for thinking a key would be in there. Perhaps you should try a different approach?",
         choices: [
-            { text: "Head for the window", next: "castleWindow" }
+            { text: "Go to the window", next: "castleWindow" }
         ]
     },
     castleWindow: {
-        text: "You approach the window and notice that it is slightly open. You can see a ledge outside, but it looks like a drop to the ground below which has rocks scattered around. What do you do?",
+        text: "You approach the window. Noticing it is slighly open, you eye the outside ledge and guage the distance from it to the ground. Ignoring the jagged rocks below. What do you do?",
         choices: [
-            { text: "Jump towards the ledge", action: () => jumpStatCheck() },
+            { text: "Jump for the ledge", action: () => jumpStatCheck() },
             { text: "But, seriously, you have to jump.", action: () => jumpStatCheck() }
         ]
     },
     castleWindowJumpSuccess: {
-        text: "You take a deep breath and jump towards the ledge. You manage to grab onto it!",
+        text: "Taking a deep breath, you spring up and reach towards the ledge. You manage to grab hold!",
         choices: [
             {
                 text: "Pull yourself up",
@@ -198,42 +198,42 @@ let story = {
         ]
     },
     castleWindowJumpAgain: {
-        text: "Biting your lip, you take a breath, and jump towards the ledge. You miss by a hair's breadth. Motivated, you shake it out and prepare to jump again. Grabbing the ledge this time, you smile in triumph.",
+        text: "Taking a deep breath, you spring up and reach towards the ledge. You miss by an inch. You shake yourself out and jump again. Success! You've grabbed the ledge.",
         choices: [
             {
-                text: "Twice? Aren't you athletic. Now, pull yourself up.",
+                text: "Twice? Aren't you athletic. Now, pull!",
                 next: "castleInside",
                 effects: [() => pointStatMath(-1)]
             }
         ]
     },
     castleWindowJumpFailure: {
-        text: "You jump and miss egregiously. Your stomach drops as you fall back towards the ground. You wonder at how silly your choice was before hitting your head on a rock.",
+        text: "You jump, you soar, you miss. You fall backwards, stomach dropping, remembering the scattered rocks, before you hit your head on one.",
         choices: [
             { text: "You have met an untimely end.", action: gameOver }
         ]
     },
     castleUpstairs: {
-        text: "Taking the winding staircase upstairs, you arrive on the second floor landing and begin your search. Each room is empty, and the back of your neck prickles like someone is watching you. Are you scared?",
+        text: "You arrive on the second floor. The back of your neck prickles like someone is watching you, and the floor creaks benath your steps. Each room you search is empty and uneasiness washes over you. Are you scared?",
         choices: [
             { text: "Yes", next: "castleHonestGoHome" },
             { text: "No", next: "castleLieGoHome" }
         ]
     },
     castleHonestGoHome: {
-        text: "We knew it! You hightail it out of the castle without a second thought, quest forgotten.",
+        text: "We knew it! You run out of the castle, without a backwards glance, quest abandoned.",
         choices: [
             { text: "Quest Failed", action: gameOver }
         ]
     },
     castleLieGoHome: {
-        text: "Liar, liar, pants on fire. You search a few more rooms, but random sounds like eerie whispering and creaking floors get to you, and you run away.",
+        text: "Liar, liar, pants on fire. Before you can search another room, you hear whispering and pounding feet below. You shiver, goosebumps forming on your arms, and run out of the castle.",
         choices: [
             { text: "Quest Failed", action: gameOver }
         ]
     },
     castleKitchen: {
-        text: "Potraits line the hallway, and their eyes follow you. You end up in a kitchen. It's a mess. You see white powder on the counters and floors. Candles that have been abandoned and a mysterious liquid spilled on the floor. Keep Searching?",
+        text: "Avoiding the eyes of the portraits, you walk down the hall and end up in a kitchen. It's a mess. White powder covers the walls, abandoned candles roll across the counters, and there's a mysterious red puddle on the floor. You decide to search somewhere else.",
         choices: [
             { text: "Go upstairs", next: "castleUpstairs" },
             {
@@ -244,9 +244,9 @@ let story = {
         ]
     },
     castleAjarDoor: {
-        text: "With a swallow, you tell yourself to be brave and open the door that first caught your attention when you walked in. You take the stairs one step at a time, heart pounding in your ears. When you make it all the way down, you find yourself in a dimly lit space with a table and some chairs. Feeling along the wall for a lightswitch, you flip it on, at the same time your friends jump out from behind the table. They begin to sing you happy birthday. Cake with lit candles, a punch bowl, and presents materialize on the table. What do you do?",
+        text: "Slowly opening the door the rest of the way, you realize it leads to a basement. Heart pounding, you take the stairs one at a time. You find yourself in a dimly lit space, barely able to make out chairs and a table. What do you do?", 
         choices: [
-            { text: "Blow out your candles", action: () => happyBirthdayEnding() }
+            { text: "Find a lightswitch", action: () => happyBirthdayEnding() }
         ]
     }
 };
@@ -355,7 +355,7 @@ function showEnding({ text, includeFlowers = false, wishPrompt = false }) {
 
     if (includeFlowers && inventory.includes("flowers")) {
         sceneText.textContent +=
-            " The flowers you picked will make a great bouquet. Raccoon takes them from you and puts them in a vase.";
+            " The flowers you picked will make a great bouquet. Raccoon takes them from you, puts them in a vase, and adds them to the table.";
     }
 
     if (wishPrompt) {
@@ -382,14 +382,14 @@ function happyBirthdayEnding() {
     }
 
     showEnding({
-        text: "All your friends got together to wish you a happy birthday and celebrate how wonderful you are, fearless hero!",
+        text: "Your fingers brush against a switch, and you flip it. When the lights flicker on, you see the table is set with a cake with unlit candles and a bowl of fruit punch. Your friends Raccoon, Anomalocaris, and Cat jump out from behind the table. They've all gathered to wish you a happy birthday and celebrate how wonderful you are, fearless hero!",
         includeFlowers: true
     });
 }
 
 function secretEnding() {
     showEnding({
-        text: "All your friends got together to wish you a happy birthday and celebrate how wonderful you are, fearless hero! Your thoughtful choices have earned you a special birthday wish.",
+        text: "Your fingers brush against a switch, and you flip it. When the lights flicker on, you see the table is set with a cake with unlit candles and a bowl of fruit punch. Your friends Raccoon, Anomalocaris, and Cat jump out from behind the table. They've all gathered to wish you a happy birthday and celebrate how wonderful you are, fearless hero! You've also unlocked a secret ending.",
         includeFlowers: true,
         wishPrompt: true
     });
