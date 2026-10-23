@@ -102,7 +102,7 @@ let story = {
         ]
     },
     flowerAdmire: {
-        text: "You stop to admire the flowers their colors mesmerizing you. Breathing deeply, the intoxicating scent fills your nostrils, and you feel light and hopeful.",
+        text: "You stop to admire the flowers, mesmerized by their colors. Breathing deeply, their intoxicating scent makes you feel light and hopeful.",
         choices: [
             { text: "Onward", next: "path" }
         ]
@@ -183,7 +183,7 @@ let story = {
     castleWindow: {
         text: "You approach the window. Noticing it is slighly open, you eye the outside ledge and guage the distance from it to the ground. Ignoring the jagged rocks below. What do you do?",
         choices: [
-            { text: "Jump for the ledge", action: () => jumpStatCheck() },
+            { text: "Jump", action: () => jumpStatCheck() },
             { text: "But, seriously, you have to jump.", action: () => jumpStatCheck() }
         ]
     },
@@ -358,21 +358,23 @@ function showEnding({ text, includeFlowers = false, wishPrompt = false }) {
             " The flowers you picked will make a great bouquet. Raccoon takes them from you, puts them in a vase, and adds them to the table.";
     }
 
-    if (wishPrompt) {
-        let wish = prompt(
-            "You have enough points to make a wish! What is your wish?"
-        );
-
-        if (wish !== null && wish.trim() !== "") {
-            sceneText.textContent += ` Your wish: ${wish.trim()}.`;
-        }
-    }
-
     launchConfetti();
     buttonArea.style.display = "none";
 
     startButton.disabled = false;
     startButton.textContent = "Play again?";
+
+    if (wishPrompt) {
+        setTimeout(() => {
+            let wish = prompt(
+                "You have enough points to make a wish! What is your wish?"
+            );
+
+            if (wish !== null && wish.trim() !== "") {
+                sceneText.textContent += ` I hope your wish comes true!`;
+            }
+        }, 2500);
+    }
 }
 
 function happyBirthdayEnding() {
