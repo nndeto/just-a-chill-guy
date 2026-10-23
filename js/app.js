@@ -222,7 +222,7 @@ function pointStatMath(value) {
         console.log("You've reached zero points.")
         return
     }
-    points = points +value
+    points = points + value
     return points
 }
 
@@ -274,9 +274,10 @@ function startQuest() {
     startButton.disabled = true; // Disable the start button after starting
     startButton.textContent = "Questing..."
     introText.style.display = "none"; // Hide the intro text
+    gamePlayArea.style.display = "block"; // Show the game play area
     setStats()
     showScene("start");
-    gamePlayArea.style.display = "block"; // Show the game play area
+    launchConfetti()
 }
 
 function gameOver() {
@@ -289,8 +290,10 @@ function gameOver() {
 
 function happyBirthdayEnding() {
     sceneText.textContent = "All your friends got together to wish you a happy birthday and celebrate how wonderful you are, fearless hero!"
-    //if bouquet in inventory add it into a flower vase
-    //here is where confetti pops
+    if (inventory) {
+        sceneText.textContent+= " The flowers you picked will make a great bouquet. Raccoon takes them from you and puts them in a vase."
+    }
+    launchConfetti() //here is where confetti pops
     //idea: alert input box with what is your wish
     startButton.disabled = false; // Re-enable the start button
     startButton.textContent = "Play again?"; // Reset button text
@@ -303,7 +306,6 @@ function showScene(sceneKey) {
 
     // Create a button for each choice
     scene.choices.forEach(function(choice) {
-
         let choiceBtn = document.createElement("button");
         choiceBtn.innerText = choice.text;
 
@@ -322,6 +324,34 @@ function showScene(sceneKey) {
         };
         buttonArea.appendChild(choiceBtn);
     });
+}
+
+function launchConfetti() {
+        // do this for 30 seconds
+    let duration = 30 * 1000;
+    let end = Date.now() + duration;
+
+    (function frame() {
+        // launch a few confetti from the left edge
+        confetti({
+            particleCount: 35,
+            angle: 60,
+            spread: 255,
+            origin: { x: 0 }
+        });
+        // and launch a few from the right edge
+        confetti({
+            particleCount: 35,
+            angle: 120,
+            spread: 255,
+            origin: { x: 1 }
+        });
+
+        // keep going until we are out of time
+        if (Date.now() < end) {
+            requestAnimationFrame(frame);
+        }
+    }());
 }
 
 //EVENT LISTENERS//
