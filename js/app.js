@@ -11,7 +11,8 @@ let luckText = document.getElementById("luck")
 let jumpText = document.getElementById("jump")
 let swimText = document.getElementById("swim")
 let pointsText = document.getElementById("points")
-let sceneText = document.getElementById("story")
+let sceneText = document.getElementById("story-text")
+let buttonArea = document.getElementById("choice-buttons");
 
 
 //STORY SCENES//
@@ -297,20 +298,16 @@ function happyBirthdayEnding() {
 
 function showScene(sceneKey) {
     let scene = story[sceneKey];
-    // Display the story text
-    sceneText.innerText = scene.text;
-    // Clear old buttons
-    let buttonArea = document.getElementById("choices");
-
-    buttonArea.innerHTML = "";
+    sceneText.innerText = scene.text; // Display the story text
+    buttonArea.innerHTML = ""; // Clear old buttons
 
     // Create a button for each choice
     scene.choices.forEach(function(choice) {
 
-        let btn = document.createElement("button");
-        btn.innerText = choice.text;
+        let choiceBtn = document.createElement("button");
+        choiceBtn.innerText = choice.text;
 
-        btn.onclick = function() {
+        choiceBtn.onclick = function() {
             if (choice.inventory) {
                 choice.inventory(); //call inventory if choice has one
             }
@@ -323,7 +320,7 @@ function showScene(sceneKey) {
                 showScene(choice.next);
             }
         };
-        buttonArea.appendChild(btn);
+        buttonArea.appendChild(choiceBtn);
     });
 }
 
