@@ -1,11 +1,10 @@
 Phase 1 — Finish the game logic
-[ ] Implement points stat updates — Finish pointStatMath() and connect it to the choices that should award or deduct points. Update the displayed Points value after each change.
-[ ] Define the points rules — Confirm the intended rewards and penalties: the river setback, flower-field choices, and successful bouquet pickup. Make sure each effect happens once, at the intended choice—not every time a scene renders.
-[ ] Decide how zero points behaves — Choose whether zero points triggers Game Over, prevents further deductions, or has another effect. The current function only logs a message when points is already zero; it doesn't yet enforce a game outcome.
-[ ] Implement the secret ending — Choose the points threshold, check it at the intended moment, and route eligible players to the secret ending. Decide what happens to players below the threshold.
-[ ] Clean up happyBirthdayEnding() — Make the ending a proper end state: clear or replace the old choice buttons, show the final message, and make the replay path consistent with Game Over.
-[ ] Finish the birthday reveal details — Add the bouquet-in-a-vase detail when flowers are in inventory, then implement the confetti and optional birthday-wish interaction if you still want them.
-[ ] Verify replay resets everything — Ensure stats, points, inventory, ending state, and any visual effects are reset appropriately when a new run starts.
+[X] Define the points rules — Confirm the intended rewards and penalties: the river setback, flower-field choices, and successful bouquet pickup. Make sure each effect happens once, at the intended choice—not every time a scene renders.
+[X] Decide how zero points behaves — Choose whether zero points triggers Game Over, prevents further deductions, or has another effect. The current function only logs a message when points is already zero; it doesn't yet enforce a game outcome.
+[X] Implement the secret ending — Choose the points threshold, check it at the intended moment, and route eligible players to the secret ending. Decide what happens to players below the threshold.
+[X] Clean up happyBirthdayEnding() — Make the ending a proper end state: clear or replace the old choice buttons, show the final message, and make the replay path consistent with Game Over.
+[X] Finish the birthday reveal details — Add the bouquet-in-a-vase detail when flowers are in inventory, then implement the confetti and optional birthday-wish interaction if you still want them.
+[X] Verify replay resets everything — Ensure stats, points, inventory, ending state, and any visual effects are reset appropriately when a new run starts.
 
 Phase 2 — Organize the HTML
 [ ] Put the stats across the top — Create a clear stats bar for Luck, Jump, Swim, and Points. Keep it separate from the story and image areas.
