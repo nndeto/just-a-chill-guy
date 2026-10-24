@@ -1,56 +1,72 @@
 
+/* Clean up redudant/dead code. Add in min/max values where needed to account for unexpected scroll behaviors. Make suggestions for larger css changes */
+
 body {
     background-image: url("../images/backgroundone.jpg");
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    min-height: 100vh;
+    max-height: 100vh;
     margin: 0;
 
-    display: flex;
+    /* display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start; */
+}
+
+.stats {
+    /* position: fixed; */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 40px;
+    max-width: 100%;
+
+    /* box-sizing: border-box; */
+    padding: 10px 20px;
+    color: whitesmoke;
+}
+
+.stats p {
+    padding: 10px 30px;
+    font-family: "Rowdies", sans-serif;
+    letter-spacing: 1px;
+    font-size: 1.5rem;
+    background: #21200C80;
+    border-radius: 100px;
 }
 
 .storybook {
+    /* Container */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
-
+    
     width: 33.33%;
-    max-width: 600px;
     min-height: 60vh;
-    padding: 24px;
-    margin-left: 3%;
-
+    max-height: 100vh;
+    padding: 20px;
+    margin-left: 5%;
+    /* Container Styling */
     box-sizing: border-box;
-    border-radius: 55px;
-    border: 1px solid rgba(0, 0, 0, 0.04); /* Ultra-subtle defining edge */
+    border-radius: 30px 80px;
     box-shadow: 0 10.1px 40px -15px rgba(0, 0, 0, 0.08), 
               0 4px 12px -2px rgba(0, 0, 0, 0.03); /* Soft ambient lift */
-    background: linear-gradient(90deg, rgba(213, 51, 105, 0.7) 0%, rgba(218, 174, 81, 0.7) 100%);
+    background: linear-gradient(90deg, rgba(213, 51, 105, 0.8) 0%, rgba(218, 174, 81, 0.8) 100%);
+    /* Fonts */
+    font-family: "Pixelify Sans", sans-serif;
+    letter-spacing: 0.5px;
+    font-size: 1.5rem;
+    color: #21200c;
 }
 
 h1 {
     font-family: "Rowdies", sans-serif;
-    font-size: 2.8rem;
+    font-size: 4.1rem;
 }
 
-p {
-    font-family: "Pixelify Sans", sans-serif;
-    letter-spacing: 0.5px;
-}
 
-.stats {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-
-    width: 100%;
-    box-sizing: border-box;
-    padding: 10px 20px;
-}
