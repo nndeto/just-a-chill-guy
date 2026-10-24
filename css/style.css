@@ -16,17 +16,14 @@ body {
 }
 
 .stats {
-    /* position: fixed; */
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     margin: 40px;
     max-width: 100%;
-
-    /* box-sizing: border-box; */
     padding: 10px 20px;
-    color: whitesmoke;
+    color: #fff3cf;
 }
 
 .stats p {
@@ -35,11 +32,18 @@ body {
     letter-spacing: 1px;
     font-size: 1.5rem;
     font-weight: 300;
+    margin-right: 10px;
 }
 
 .stats-on-start {
-    background: #21200C80;
+    background: linear-gradient(
+        to bottom,
+        rgba(75, 76, 39, 0.88),
+        rgba(48, 53, 27, 0.88)
+    );
+    border: 1px solid rgba(205, 177, 100, 0.8);
     border-radius: 100px;
+    box-shadow: 0 3px 8px rgba(34, 43, 24, 0.18);
 }
 
 .storybook {
