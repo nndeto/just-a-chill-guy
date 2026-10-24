@@ -1,5 +1,5 @@
 
-/* Clean up redudant/dead code. Add in min/max values where needed to account for unexpected scroll behaviors. Make suggestions for larger css changes */
+/* Clean up redudant/dead code. Add in min/max values where needed to account for unexpected scroll behaviors. Make suggestions for larger css changes. Call out any issues, use code best practices when reviewing*/
 
 body {
     background-image: url("../images/backgroundone.jpg");
@@ -34,6 +34,7 @@ body {
     font-family: "Rowdies", sans-serif;
     letter-spacing: 1px;
     font-size: 1.5rem;
+    font-weight: 300;
 }
 
 .stats-on-start {
@@ -111,4 +112,8 @@ h1 {
     cursor: not-allowed;
     opacity: 0.75;
     transform: none;
+}
+
+.choice-buttons-on-start {
+    margin: 0px 20px;
 }

@@ -413,6 +413,7 @@ function showScene(sceneKey) {
     // Create a button for each choice
     scene.choices.forEach(function(choice) {
         let choiceBtn = document.createElement("button");
+        choiceBtn.classList.add('button', 'choice-buttons-on-start')
         choiceBtn.innerText = choice.text;
 
         choiceBtn.onclick = function() {
