@@ -66,9 +66,10 @@ body {
               0 4px 12px -2px rgba(0, 0, 0, 0.03); /* Soft ambient lift */
     background: linear-gradient(180deg, rgba(213, 51, 105, 0.8) 0%, rgba(218, 174, 81, 0.8) 100%);
     /* Fonts */
-    font-family: "Pixelify Sans", sans-serif;
-    letter-spacing: 0.5px;
-    font-size: 1.5rem;
+    font-family: 'VT323', monospace;
+    line-height: 1.45;
+    letter-spacing: 0.4px;
+    font-size: 1.6rem;
     color: #21200c;
 }
 
@@ -119,5 +120,5 @@ h1 {
 }
 
 .choice-buttons-on-start {
-    margin: 0px 20px;
+    margin: 10px 20px;
 }
