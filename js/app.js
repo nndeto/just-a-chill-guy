@@ -261,9 +261,13 @@ function setStats() {
     swimStat = randomizeStat();
 
     luckText.textContent = `Luck: ${luckStat}`;
+    luckText.classList.add('stats-on-start');
     jumpText.textContent = `Jump: ${jumpStat}`;
+    jumpText.classList.add('stats-on-start');
     swimText.textContent = `Swim: ${swimStat}`;
+    swimText.classList.add('stats-on-start');
     pointsText.textContent = `Points: ${points}`;
+    pointsText.classList.add('stats-on-start');
 
     return;
 }
