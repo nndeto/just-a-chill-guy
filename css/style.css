@@ -17,7 +17,7 @@ body {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    margin: 40px;
+    margin: 20px 40px 0px 40px;
     max-width: 100%;
     padding: 10px 20px;
     color: #fff3cf;
@@ -50,10 +50,10 @@ rgba(48, 53, 27, 0.88)
     align-items: center;
     justify-content: center;
     text-align: center;
-    width: 33.33%;
+    width: 36.33%;
     min-height: 60vh;
     max-height: 100vh;
-    padding: 20px;
+    padding: 20px 10px;
     margin-left: 5%;
 /* Container Styling */
     box-sizing: border-box;
@@ -65,13 +65,13 @@ rgba(48, 53, 27, 0.88)
     font-family: 'VT323', monospace;
     line-height: 1.45;
     letter-spacing: 0.4px;
-    font-size: 1.6rem;
+    font-size: 1.2rem;
     color: #21200c;
 }
 
 h1 {
     font-family: "Rowdies", sans-serif;
-    font-size: 4.1rem;
+    font-size: 3.2rem;
 }
 
 .button {
@@ -322,6 +322,22 @@ rgba(197, 168, 88, 0.15) 100%
 }
 
 /* MEDIA QUERIES */
+
+/* Larger desktop screens */
+@media screen and (min-width: 1600px) {
+    h1 {
+        font-size: 4.1rem;
+    }
+
+    .storybook {
+        font-size: 1.7rem;
+    }
+
+    .picturebook img {
+        width: 550px;
+        height: 550px;
+    }
+}
 
 @media screen and (max-width: 768px) {
     #mobile-warning {
