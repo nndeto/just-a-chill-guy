@@ -8,7 +8,7 @@ let inventory = [];
 const starSymbols = ["✦", "✧", "⋆", "✴"];
 const starOverlay = document.getElementById("star-overlay");
 let startButton = document.getElementById("start-button");
-let introHeader = document.getElementById("h1");
+let introHeader = document.getElementById("intro-header");
 let introText = document.getElementById("intro-text");
 let gamePlayArea = document.getElementById("game-play");
 let luckText = document.getElementById("luck");
@@ -93,7 +93,7 @@ for (let i = 0; i < 24; i++) {
 }
 
 //STORY SCENES//
-let story = {
+const story = {
     start: {
         text: "You actually started the quest?! Brave soul. You find yourself before a split path. Which way do you go?",
         choices: [
@@ -358,7 +358,7 @@ function pointStatMath(value) {
 }
 
 function twoThirdChance(optionA, optionB) {
-    return Math.random() < 0.66 ? optionA : optionB;
+    return Math.random() < 2/3 ? optionA : optionB;
 }
 
 function fiftyFiftyChance(optionA, optionB) {
@@ -366,9 +366,7 @@ function fiftyFiftyChance(optionA, optionB) {
 }
 
 function inventoryAdd(item) {
-    // console.log(`Added ${item} to inventory.`);
     inventory.push(item);
-    return;
 }
 
 function swimStatCheck() {
@@ -492,31 +490,33 @@ function secretEnding() {
 }
 
 function showScene(sceneKey) {
-    let scene = story[sceneKey];
-    sceneText.innerText = scene.text;
-    buttonArea.innerHTML = "";
+    const scene = story[sceneKey];
 
-    // Create a button for each choice
-    scene.choices.forEach(function(choice) {
-        let choiceBtn = document.createElement("button");
-        choiceBtn.classList.add('button', 'choice-buttons-on-start')
-        choiceBtn.innerText = choice.text;
+    if (!scene) {
+        console.error(`Scene not found: ${sceneKey}`);
+        return;
+    }
 
-        choiceBtn.onclick = function() {
-            if (choice.effects) {
-                choice.effects.forEach(effect => effect());
+    sceneText.textContent = scene.text;
+    buttonArea.replaceChildren();
+
+    scene.choices.forEach(choice => {
+        const choiceBtn = document.createElement("button");
+
+        choiceBtn.classList.add("button", "choice-buttons-on-start");
+        choiceBtn.textContent = choice.text;
+
+        choiceBtn.addEventListener("click", () => {
+            choice.effects?.forEach(effect => effect());
+
+            const nextScene = choice.action
+                ? choice.action()
+                : choice.next;
+
+            if (nextScene) {
+                showScene(nextScene);
             }
-
-            if (choice.action) {
-                let nextScene = choice.action();
-
-                if (nextScene) {
-                    showScene(nextScene);
-                }
-            } else {
-                showScene(choice.next);
-            }
-        };
+        });
 
         buttonArea.appendChild(choiceBtn);
     });
