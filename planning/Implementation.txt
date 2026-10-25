@@ -7,7 +7,7 @@ Phase 1 — Finish the game logic
 [X] Verify replay resets everything — Ensure stats, points, inventory, ending state, and any visual effects are reset appropriately when a new run starts.
 
 Phase 2 — Organize the HTML
-[ ] Put the stats across the top — Create a clear stats bar for Luck, Jump, Swim, and Points. Keep it separate from the story and image areas.
+[X] Put the stats across the top — Create a clear stats bar for Luck, Jump, Swim, and Points. Keep it separate from the story and image areas.
 [ ] Clean up IDs and class names — Use unique IDs for elements JavaScript needs to select; use reusable classes for repeated styling, such as choice buttons, scene layout, and stat labels.
 [ ] Set up the main layout containers — Separate the stats bar, story/choice area on the left, and picture area on the right so each can be styled and updated independently.
 [ ] Check the HTML structure — Remove redundant wrappers, verify that elements are nested correctly, and ensure the JavaScript selectors match the final IDs.
@@ -21,9 +21,9 @@ Phase 3 — Contextual right-side picture
 
 Phase 4 — CSS styling and polish
 [ ] Style the overall layout — Build the desktop composition with the stats bar at the top, story and choices on the left, and artwork on the right.
-[ ] Style the story and choice buttons — Set readable text widths, spacing, button sizes, hover/focus states, and consistent spacing between choices.
-[ ] Apply the font pairing — Use Pixelify Sans and Rowdies intentionally, with a clear hierarchy between story text, headings, stats, and buttons.
-[ ] Style the stats bar and inventory — Make values easy to scan and keep the stats readable while the story changes.
+[X] Style the story and choice buttons — Set readable text widths, spacing, button sizes, hover/focus states, and consistent spacing between choices.
+[X] Apply the font pairing — Use Pixelify Sans and Rowdies intentionally, with a clear hierarchy between story text, headings, stats, and buttons.
+[X] Style the stats bar and inventory — Make values easy to scan and keep the stats readable while the story changes.
 [ ] Make the layout responsive — Check smaller browser widths so the picture and story stack sensibly rather than getting cramped or overflowing.
 [ ] Polish scene transitions and the ending — Check image sizing, text overflow, spacing, and any celebratory effects in the final party scene.
 

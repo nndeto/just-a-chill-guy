@@ -5,6 +5,8 @@ let jumpStat;
 let swimStat;
 let points = 3;
 let inventory = [];
+const starSymbols = ["✦", "✧", "⋆", "✴"];
+const starOverlay = document.getElementById("star-overlay");
 let startButton = document.getElementById("start-button");
 let introHeader = document.getElementById("h1");
 let introText = document.getElementById("intro-text");
@@ -16,6 +18,25 @@ let pointsText = document.getElementById("points");
 let sceneText = document.getElementById("story-text");
 let buttonArea = document.getElementById("choice-buttons");
 
+//GLOBAL EVENT//
+for (let i = 0; i < 24; i++) {
+    const star = document.createElement("span");
+
+    star.classList.add("star");
+    star.textContent =
+        starSymbols[Math.floor(Math.random() * starSymbols.length)];
+
+    star.style.left = `${Math.random() * 100}%`;
+    star.style.fontSize = `${10 + Math.random() * 14}px`;
+    star.style.animationDuration = `${12 + Math.random() * 18}s`;
+    star.style.animationDelay = `${-Math.random() * 30}s`;
+
+    const colors = ["#f4d58a", "#fff0c2", "#c5cf91"];
+    star.style.color =
+        colors[Math.floor(Math.random() * colors.length)];
+
+    starOverlay.appendChild(star);
+}
 
 //STORY SCENES//
 let story = {
@@ -478,3 +499,7 @@ function stopConfetti() {
 
 //EVENT LISTENERS//
 startButton.addEventListener("click", startQuest);
+
+
+
+
