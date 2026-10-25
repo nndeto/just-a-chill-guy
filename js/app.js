@@ -19,6 +19,7 @@ let sceneText = document.getElementById("story-text");
 let buttonArea = document.getElementById("choice-buttons");
 const orb = document.getElementById("magic-orb");
 const styleSheet = document.createElement("style");
+const pictureBook = document.getElementById("picturebook")
 
 //GLOBAL EVENT//
 document.head.appendChild(styleSheet);
@@ -408,6 +409,7 @@ function jumpStatCheck() {
 function startQuest() {
     // console.log("Quest started!");
     stopConfetti();
+    pictureBook.style.visibility = "hidden";
     introText.style.display = "none";
     introHeader.textContent = "Oh, just a chill hero?";
     startButton.disabled = true;
@@ -428,16 +430,24 @@ function gameOver() {
     introHeader.textContent = "Hey there, just a chill guy!";
 }
 
-
-function showEnding({ text, includeFlowers = false, wishPrompt = false }) {
+function showEnding({
+    text,
+    includeFlowers = false,
+    wishPrompt = false,
+    includeConfetti = true
+    }) {
     sceneText.textContent = text;
+    pictureBook.style.visibility = "visible";
 
     if (includeFlowers && inventory.includes("flowers")) {
         sceneText.textContent +=
             " The flowers you picked will make a great bouquet. Raccoon takes them from you, puts them in a vase, and adds them to the table.";
     }
 
-    launchConfetti();
+    if (includeConfetti) {
+        launchConfetti();
+    }
+
     buttonArea.style.display = "none";
 
     startButton.disabled = wishPrompt;
@@ -450,7 +460,8 @@ function showEnding({ text, includeFlowers = false, wishPrompt = false }) {
             );
 
             if (wish !== null && wish.trim() !== "") {
-                sceneText.textContent += " I hope the universe grants your wish!";
+                sceneText.textContent +=
+                    " I hope the universe grants your wish!";
             }
 
             startButton.disabled = false;
@@ -473,9 +484,10 @@ function happyBirthdayEnding() {
 
 function secretEnding() {
     showEnding({
-        text: "Your fingers brush against a switch, and you flip it. When the lights flicker on, you see the table is set with a cake with unlit candles and a bowl of fruit punch. Your friends Raccoon, Anomalocaris, and Cat jump out from behind the table. They've all gathered to wish you a happy birthday and celebrate how wonderful you are, fearless hero! You've also unlocked a secret ending.",
+        text: "Your fingers brush against a switch, and you flip it. When the lights flicker on, you see the table is set with a cake with unlit candles and a bowl of fruit punch. Your friends Raccoon, Anomalocaris, and Cat jump out from behind the table. They've all gathered to wish you a happy birthday and celebrate how wonderful you are, fearless hero!",
         includeFlowers: true,
-        wishPrompt: true
+        wishPrompt: true,
+        includeConfetti: false
     });
 }
 
@@ -511,14 +523,14 @@ function showScene(sceneKey) {
 }
 
 function launchConfetti() {
-    // Do this for 20 seconds
-    let duration = 20 * 1000;
+    // Do this for 10 seconds
+    let duration = 5 * 1000;
     let end = Date.now() + duration;
 
     (function frame() {
-        // Launch a few confetti from the left edge
+        //launch a few confetti from the left edge
         confetti({
-            particleCount: 35,
+            particleCount: 25,
             angle: 60,
             spread: 255,
             origin: { x: 0 }
@@ -526,7 +538,7 @@ function launchConfetti() {
 
         // Launch a few confetti from the right edge
         confetti({
-            particleCount: 35,
+            particleCount: 25,
             angle: 120,
             spread: 255,
             origin: { x: 1 }

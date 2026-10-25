@@ -126,6 +126,7 @@ h1 {
 .picturebook {
     position: fixed;
     inset: 180px 66%;
+    visibility: hidden;
 }
 
 .picturebook img {
