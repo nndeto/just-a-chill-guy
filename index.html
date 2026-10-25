@@ -12,7 +12,12 @@
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
     <title>Just A Chill Guy</title>
 </head>
-<body>
+<body id ="star-overlay">
+
+    <div id="mobile-warning">
+        <p>This is a desktop or laptop experience. Please switch for the best adventure.</p>
+    </div>
+
     <div class = "stats">
         <p id = "luck"></p>
         <p id = "jump"></p>
@@ -31,7 +36,13 @@
             </div>
         </div>
     </div>
-    <div class = "picturebook" id ="star-overlay">
+    <div class = "picturebook">
+        <img src="./images/Fantasy Tavern Birthday Feast.png" width="550" height="550">
+    </div>
+    <div id="magic-orb" aria-hidden="true">
+        <div class="orb-halo"></div>
+        <div class="orb-core"></div>
+        <div class="orb-sparkle">✦</div>
     </div>
 </body>
 </html>

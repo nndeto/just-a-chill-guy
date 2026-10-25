@@ -17,8 +17,61 @@ let swimText = document.getElementById("swim");
 let pointsText = document.getElementById("points");
 let sceneText = document.getElementById("story-text");
 let buttonArea = document.getElementById("choice-buttons");
+const orb = document.getElementById("magic-orb");
+const styleSheet = document.createElement("style");
 
 //GLOBAL EVENT//
+document.head.appendChild(styleSheet);
+
+function randomBetween(min, max) {
+    return Math.random() * (max - min) + min;
+}
+
+function createOrbPath() {
+    const points = [];
+
+    // Keep the orb's center in the right side of the screen.
+    for (let i = 0; i < 6; i++) {
+        points.push({
+            x: randomBetween(65, 82),
+            y: randomBetween(15, 85)
+        });
+    }
+
+    // Start at a random point in the path.
+    const start = Math.floor(Math.random() * points.length);
+    const path = [
+        ...points.slice(start),
+        ...points.slice(0, start)
+    ];
+
+    const keyframes = path.map((point, i) => {
+        const percent = (i / path.length) * 100;
+
+        return `
+            ${percent}% {
+                left: ${point.x}%;
+                top: ${point.y}%;
+            }
+        `;
+    }).join("");
+
+    styleSheet.textContent = `
+        @keyframes random-orb-wander {
+            ${keyframes}
+            100% {
+                left: ${path[0].x}%;
+                top: ${path[0].y}%;
+            }
+        }
+    `;
+
+    orb.style.animation =
+        "random-orb-wander 30s ease-in-out infinite";
+}
+
+createOrbPath();
+
 for (let i = 0; i < 24; i++) {
     const star = document.createElement("span");
 
